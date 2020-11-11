@@ -1,15 +1,38 @@
-10 gosub 9900: rem title and intro
+10 gosub 9800: rem screen setup
+11 rem gosub 9900: rem title and intro
+
+19 rem variables
 20 a$="": rem input from player
+21 x$="": rem random temp string variable
+22 i=0:j=0: rem loop variables
+30 ne=2: rem number of events
+31 nl=25: rem number of lines per event
+32 dim el$(ne, nl): rem event text lines
+
+40 gosub 40000: rem read event data into el$(,)
+
+50 e = 1: gosub 2000: rem print event 1
+
 100 end
 
 1000 print "                --more--"
 1001 get zz$:if zz$="" goto 1001
 1002 return
 
+2000 rem print event from el$(e)
+2010 for i = 1 to nl
+2020   x$ = el$(e, i)
+2030   if x$ = "@" then return
+2040   print x$
+2050 next i
+2050 return
+
+9800 rem screen setup
+9810 print chr$(14): rem upper-lowercase characters
+9815 poke 53280,0:poke 53281,0
+9820 return
+
 9900 rem title screen
-9910 print chr$(14): rem upper-lowercase characters
-9915 poke 53280,0:poke 53281,0
-9919 print
 9920 print "{clr}             Imitation Game"
 9921 print
 9930 print "       An interactive short story"
@@ -128,7 +151,7 @@
 13001 print "{rvon}                                       "
 13002 print "{rvon} {rvof}                                     {rvon} "
 13003 print "{rvon} {rvof}  Software Failure. Rebooting...     {rvon} "
-13004 print "{rvon} {rvof}  Guru Meditation #03011892.ACDC     {rvon} "
+13004 print "{rvon} {rvof}  Guru Meditation #10071856.ACDC     {rvon} "
 13005 print "{rvon} {rvof}                                     {rvon} "
 13006 print "{rvon}                                       "
 13010 get zz$:if zz$="" goto 13010
@@ -155,3 +178,47 @@
 14033 print "stuff here! I'm sure we'll get along"
 14034 print "really well!"
 14030 return
+
+40000 rem read in event descriptions
+40100 for i=1 to ne
+40110   rem for j=1 to nl
+40120     rem read x$
+40130     rem el$(i, j) = x$
+40131     rem print i;j;el$(i,j)
+40140     rem if x$="@" then i=i+1: j=nl
+40150   rem next j
+40160   gosub 40400
+40200 next i
+40300 return
+
+40400 rem read in one event
+40410 for j=1 to nl
+40420   read x$
+40430   el$(i,j) = x$
+40440   if x$="@" then return
+40450 next j
+40460 return
+
+50000 data "You arrive to the riverside. It is"
+50001 data "filled with warehouses and booths for"
+50002 data "tourist river cruises, so it is pretty"
+50003 data "quiet at this time of the night. One"
+50004 data "bar, 'The Mallorn' is open and floods"
+50005 data "the street with its golden light. You"
+50006 data "can hear music coming from the bar."
+50007 data "@"
+50100 data "The Mallorn Bar is filled with people."
+50101 data "A band is playing at the stage, three"
+50102 data "theremins wailing harmoniously and a"
+50103 data "woman with the voice of an angel"
+50104 data "singing. You listen to them for a while"
+50105 data "until the song fades away and the"
+50106 data "audience starts clapping and cheering."
+50107 data "'Paula and the three Sids' the singer"
+50108 data "announces. 'We will be back on stage"
+50109 data "after a short break!'"
+50110 data ""
+50120 data "You feel Nikola buzzing your brain."
+50121 data "Maybe your assistant has something to"
+50122 data "say."
+50123 data "@"
