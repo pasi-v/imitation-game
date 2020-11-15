@@ -5,13 +5,13 @@
 20 in$="": rem input from player
 21 x$="": rem random temp string variable
 22 i=0:j=0: rem loop variables
-30 ne=13: rem number of events
+30 ne=14: rem number of events
 31 nl=25: rem number of lines per event
 32 dim el$(ne, nl): rem event text lines
 
 40 gosub 40000: rem read event data into el$(,)
 
-50 e = 11: rem start at event
+50 e = 13: rem start at event
 55 gosub 2000: rem print event/location based on e
 60 gosub 2200: rem read command into co$
 70 gosub 3000: rem update state variable
@@ -49,6 +49,7 @@
 3110 if e=10 and co$="enter" then e=11: return
 3120 if e=11 and co$="right" then e=12: return
 3130 if e=12 and co$="climb" then e=13: return
+3140 if e=13 and co$="enter" then e=14: return
 3500 return
      
      
@@ -394,5 +395,21 @@
 52308 data "side of the pillar supporting the"
 52309 data "aerial."
 52310 data "@"
+      
+52400 data "You enter the control room under the"
+52401 data "aerial. There are computers along the"
+52402 data "walls - powerful Tesla mainframes. Arcs"
+52403 data "of electricity are jumping between them"
+52404 data "and the central pillar glowing with an"
+52405 data "eerie blue light. You hear in your mind"
+52406 data "Nikola yelp excitedly or maybe scared."
+52407 data "You have reached your destination."
+52408 data ""
+52410 data "As you approach the central console, an"
+52411 data "arc of electricity bounces from it to"
+52412 data "your head. You smell burning flesh and"
+52413 data "hear yourself and Nikola screaming in"
+52414 data "agony. Then silence and darkness."
+52415 data "@"
       
 
