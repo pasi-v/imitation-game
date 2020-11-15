@@ -5,7 +5,7 @@
 20 in$="": rem input from player
 21 x$="": rem random temp string variable
 22 i=0:j=0: rem loop variables
-30 ne=5: rem number of events
+30 ne=6: rem number of events
 31 nl=25: rem number of lines per event
 32 dim el$(ne, nl): rem event text lines
 
@@ -35,12 +35,13 @@
 2220 return
      
 3000 rem update state
-3001 if co$="quit" or co$="exit" then end
+3001 if co$="quit" then end
 3010 if e=1 and co$="mallorn" then e=2: return
-3020 if e=2 then e=3: return: rem any command
+3020 if e=2 and co$="sit" then e=3: return: rem any command
 3030 if e=3 and co$="talk" then e=4: return
-3040 if e=4 then e=5: return
-3050 if e=5 then e=6: return
+3040 if e=4 and co$="listen" then e=5: return
+3050 if e=5 and co$="exit" then e=6: return
+3060 if e=6 and co$="hole" then e=7: return
 3500 return
      
      
@@ -297,3 +298,11 @@
 50543 data "to me.'"
 50550 data "@"
       
+50600 data "You leave the Mallorn bar and return to"
+50601 data "the river front. Remembering the song"
+50602 data "lyrics, you notice a metal crate next"
+50603 data "to a large tree on the river bank. It"
+50604 data "looks like some kind of maintenance"
+50605 data "hole for the rain water drainage"
+50606 data "system."
+50607 data "@"      
