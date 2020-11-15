@@ -5,13 +5,13 @@
 20 in$="": rem input from player
 21 x$="": rem random temp string variable
 22 i=0:j=0: rem loop variables
-30 ne=9: rem number of events
+30 ne=11: rem number of events
 31 nl=25: rem number of lines per event
 32 dim el$(ne, nl): rem event text lines
 
 40 gosub 40000: rem read event data into el$(,)
 
-50 e = 7: rem start at event
+50 e = 10: rem start at event
 55 gosub 2000: rem print event/location based on e
 60 gosub 2200: rem read command into co$
 70 gosub 3000: rem update state variable
@@ -45,7 +45,9 @@
 3070 if e=7 and co$="open" then print "It is locked.": return
 3080 if e=7 and co$="computer" then e=8: return: rem add guru
 3090 if e=8 and co$="talk" then e=9: return
-3100 if e=9 then e=10: return
+3100 if e=9 and co$="talk" then e=10: return
+3110 if e=10 and co$="enter" then e=11: return
+3120 if e=11 and co$="right" then e=12: return
 3500 return
      
      
@@ -350,3 +352,19 @@
 50926 data "in participating.'"
 50927 data "@"
       
+52000 data "'You are correct' Alan says as he"
+52001 data "opens the door. 'We have deemed you"
+52002 data "worthy to pass through this door we"
+52003 data "guard. Remember the song as you"
+52004 data "continue your journey.'"
+52005 data "@"
+      
+52100 data "You enter the tunnels under the city."
+52101 data "These were probably some maintenance"
+52102 data "tunnels from the time before the tower"
+52103 data "was built, and possibly have not been"
+52104 data "used since."
+52105 data ""
+52110 data "You come to a fork in the tunnel."
+52111 data "There are routes left and right."
+52112 data "@"
