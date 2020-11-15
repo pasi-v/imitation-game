@@ -5,13 +5,13 @@
 20 in$="": rem input from player
 21 x$="": rem random temp string variable
 22 i=0:j=0: rem loop variables
-30 ne=6: rem number of events
+30 ne=9: rem number of events
 31 nl=25: rem number of lines per event
 32 dim el$(ne, nl): rem event text lines
 
 40 gosub 40000: rem read event data into el$(,)
 
-50 e = 1: rem start at event 1
+50 e = 7: rem start at event
 55 gosub 2000: rem print event/location based on e
 60 gosub 2200: rem read command into co$
 70 gosub 3000: rem update state variable
@@ -42,6 +42,10 @@
 3040 if e=4 and co$="listen" then e=5: return
 3050 if e=5 and co$="exit" then e=6: return
 3060 if e=6 and co$="hole" then e=7: return
+3070 if e=7 and co$="open" then print "It is locked.": return
+3080 if e=7 and co$="computer" then e=8: return: rem add guru
+3090 if e=8 and co$="talk" then e=9: return
+3100 if e=9 then e=10: return
 3500 return
      
      
@@ -305,4 +309,44 @@
 50604 data "looks like some kind of maintenance"
 50605 data "hole for the rain water drainage"
 50606 data "system."
-50607 data "@"      
+50607 data "@" 
+      
+50700 data "Nikola sends a signal to the electric"
+50701 data "lock, and you open the rusty gate and"
+50702 data "enter the tunnel. There are dim and red"
+50703 data "magnetic lamps barely lighting the"
+50704 data "tunnel, which opens into a cavern. An"
+50705 data "old PET model computer is still on a"
+50706 data "table, leftovers from a bygone era."
+50707 data "There is a heavy door on the other side"
+50708 data "of the cavern with a sign 'Property of"
+50709 data "Tesla corporation. No trespassing'."
+50710 data "@"
+      
+50800 data "As you approach the computer, a red"
+50801 data "lightning bolt springs from it and hits"
+50802 data "you. Or was it the other way?"
+50803 data "@"
+      
+50900 data "You wake up, flickering balls of light"
+50901 data "dancing in your vision. After a few"
+50902 data "seconds the balls start to settle and"
+50903 data "form three figures. One is a middle-"
+50904 data "aged gentleman in an almost modern"
+50905 data "suit, the others, an old man and a"
+50906 data "younger woman, appear to be dressed in"
+50907 data "a very old-fashined style. Or maybe"
+50908 data "they are at the top of the pop fashion"
+50909 data "and you are in some underground new"
+50910 data "wave club. This is the 80's, you can"
+50911 data "never know."
+50912 data ""
+50920 data "'Good evening, sir' says the man in"
+50921 data "the suit. 'My name is Alan and these"
+50922 data "are my friends Charles and Ada. We"
+50923 data "were just about to start a little game"
+50924 data "I have invented, and your friend"
+50925 data "Nikola told us you might be interested"
+50926 data "in participating.'"
+50927 data "@"
+      
