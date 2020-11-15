@@ -5,7 +5,7 @@
 20 in$="": rem input from player
 21 x$="": rem random temp string variable
 22 i=0:j=0: rem loop variables
-30 ne=4: rem number of events
+30 ne=5: rem number of events
 31 nl=25: rem number of lines per event
 32 dim el$(ne, nl): rem event text lines
 
@@ -40,6 +40,7 @@
 3020 if e=2 then e=3: return: rem any command
 3030 if e=3 and co$="talk" then e=4: return
 3040 if e=4 then e=5: return
+3050 if e=5 then e=6: return
 3500 return
      
      
@@ -275,3 +276,24 @@
 50434 data "to overwrite anything important' you"
 50435 data "snap back."
 50436 data "@"
+      
+50500 data "Paula looks directly at you as she"
+50501 data "announces their next song. 'This is The"
+50502 data "Riddle, by Nikola Kershaw, one of the"
+50503 data "greatest poets of our time. Enjoy.'"
+50504 data ""
+50510 data "  {white}Near a tree by a river"
+50511 data "  There's a hole in the ground"
+50523 data "  Where an old man and Ada"
+50524 data "  Go around and around"
+50525 data "  Alan's mind is a beacon"
+50526 data "  In the veil of the night"
+50527 data "  For a strange kind of fashion"
+50528 data "  There's a wrong and a right"
+50529 data "  But he'll never, never fight over you"
+50540 data ""
+50541 data "{lblu}'Got that' Nikola announces happily."
+50542 data "'You can replay it by saying 'riddle'"
+50543 data "to me.'"
+50550 data "@"
+      
