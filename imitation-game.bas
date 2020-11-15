@@ -1,11 +1,11 @@
 10 gosub 9800: rem screen setup
-11 gosub 9900: rem title and intro
+11 rem gosub 9900: rem title and intro
 
 19 rem variables
 20 in$="": rem input from player
 21 x$="": rem random temp string variable
 22 i=0:j=0: rem loop variables
-30 ne=2: rem number of events
+30 ne=4: rem number of events
 31 nl=25: rem number of lines per event
 32 dim el$(ne, nl): rem event text lines
 
@@ -36,7 +36,10 @@
      
 3000 rem update state
 3001 if co$="quit" or co$="exit" then end
-3010 if e=1 and co$="mallorn" then e=2
+3010 if e=1 and co$="mallorn" then e=2: return
+3020 if e=2 then e=3: return: rem any command
+3030 if e=3 and co$="talk" then e=4: return
+3040 if e=4 then e=5: return
 3500 return
      
      
@@ -220,6 +223,7 @@
 50005 data "the street with its golden light. You"
 50006 data "can hear music coming from the bar."
 50007 data "@"
+      
 50100 data "The Mallorn Bar is filled with people."
 50101 data "A band is playing at the stage, three"
 50102 data "theremins wailing harmoniously and a"
@@ -236,3 +240,38 @@
 50122 data "say."
 50123 data "@"
 
+50200 data "Two women are sitting in a corner"
+50201 data "table. One is dressed in a police"
+50202 data "uniform, sipping a coke, apparently on"
+50203 data "duty, but still relaxing in the bar"
+50204 data "while talking to someone."
+50205 data ""
+50206 data "The other woman is very beautiful and"
+50207 data "dressed in a multi-colour clothing. It"
+50208 data "flickers as she moves, so much that you"
+50209 data "can not be quite sure whether she is"
+50210 data "real or an electrogram."
+50211 data "@"
+      
+50400 data "'Denise, would you please contact"
+50401 data "Paula, and tell her that there is a fan"
+50402 data "who would like to hear their special"
+50403 data "song. Their version of the British"
+50404 data "synthpop song she likes so much.'"
+50405 data ""
+50410 data "Denise nods and flutters away like a"
+50411 data "butterfly. She whispers something to"
+50412 data "Paula who is getting back on the stage"
+50413 data "with the thereminists. Paula glances"
+50414 data "towards Agnus and notices you."
+50415 data ""
+50420 data "'Listen carefully, she does not perform"
+50421 data "this song very often.' Agnus says."
+50422 data ""
+50430 data "'Do not worry!' you hear Nikola in your"
+50431 data "mind. 'I will record it in your"
+50432 data "permanent memory so we can fetch it"
+50433 data "back anytime you want.' 'Just try not"
+50434 data "to overwrite anything important' you"
+50435 data "snap back."
+50436 data "@"
