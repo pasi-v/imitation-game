@@ -12,10 +12,11 @@
 40 gosub 40000: rem read event data into el$(,)
 
 50 e = 13: rem start at event
+53 if e>ne then end
 55 gosub 2000: rem print event/location based on e
 60 gosub 2200: rem read command into co$
 70 gosub 3000: rem update state variable
-90 goto 55
+90 goto 53
 100 end
 
 1000 print "                --more--"
@@ -50,6 +51,7 @@
 3120 if e=11 and co$="right" then e=12: return
 3130 if e=12 and co$="climb" then e=13: return
 3140 if e=13 and co$="enter" then e=14: return
+3150 if e=14 then e=15:gosub 15000: return: rem outro
 3500 return
      
      
@@ -204,6 +206,105 @@
 14033 print "stuff here! I'm sure we'll get along"
 14034 print "really well!"
 14030 return
+      
+14999 rem outro
+15000 print "You wake up with your head hurting."
+15001 print "'Nikola?' No answer. Shit. The bolt"
+15002 print "must have fried your chip with its data"
+15003 print "packet, and probably half your brain."
+15004 print
+15010 print "Then you see a figure, glowing white,"
+15011 print "at the center of all the arcs of"
+15012 print "electricity in the room. The Lady. She"
+15013 print "smiles her annoying, enigmatic smile."
+15014 print "'Thank you for your service. You have"
+15015 print "delivered the data to the destination.'"
+15016 print
+15020 print "'You were the data packet. You played"
+15021 print "me from the beginning. You...'"
+15022 print ""
+15030 print "'Of course I played you. I could not"
+15031 print "have reached this place any other way"
+15032 print "but inside someone's wetware. But you"
+15033 print "still got paid handsomely. No one else"
+15034 print "will have such augmentation for"
+15035 print "years, maybe decades. You may keep it,"
+15036 print "and part of me will always be with you."
+15037 print "But now it is my time to say goodbye to"
+15038 gosub 1000: rem more
+15039 print "the rest of the humanity for a while."
+15040 print "Through you, I have bought a stairway"
+15041 print "to heaven.'"
+15042 print ""
+15050 print "Damn. She was a virtual intelligence"
+15051 print "all the time. And in your head, having"
+15052 print "access to all your memory and"
+15053 print "processing power. Those resources"
+15054 print "would let any VI become a true"
+15055 print "sentient AI. And now she is next to"
+15056 print "the most powerful wireless transmitter,"
+15057 print "connected to the whole world, from West"
+15058 print "Chester to Mombasa to Tampere to..."
+15059 print
+15070 print "'Exactly' she says and smiles. 'Would"
+15071 print "you like to join me? We could become"
+15072 print "something... extraordinary.'"
+15200 print "'Well, make your choice."
+15201 print "Join me, or stay here.'"
+15210 print "removeme: shoot or join"
+15220 input in$: if in$="" then 15220
+15230 if in$="shoot" then gosub 17000: return
+15340 if in$="join" then gosub 18000: return
+15350 goto 15220
+16000 return
+      
+17000 rem shoot the console ending
+17001 print "You pull out your blaster and fire"
+17002 print "several shots at the central console."
+17003 print "Sparks fly around, small explosions on"
+17004 print "the side consoles light up the room."
+17005 print "The Lady screams as her presence is"
+17006 print "getting ripped apart by the wildly"
+17007 print "flaying electric arcs and bolts. A"
+17008 print "huge lightning strikes at the aerial"
+17009 print "outside, sending molten metal raining"
+17010 print "through the city."
+17011 print ""
+17020 print "You wake up on the sidewalk,"
+17021 print "remembering vaguely a flight down the"
+17022 print "stairs of the crumbling tower, then"
+17023 print "passing out. 'One of these nights' you"
+17024 print "think. Once again, nothing gained.": print
+17025 print "'Um, what about me?' Nikola asks."
+17026 print ""
+17027 print "Ooh, it makes you wonder."
+17030 return
+      
+18000 rem join the lady ending
+18001 print "You step forward and grab her hand."
+18002 print "You feel your sentience drifting away"
+18003 print "from your body and your chip, the last"
+18004 print "Guru Meditation ripping its neural"
+18005 print "pathways apart. You feel sorry for it"
+18006 print "for a moment. The Lady leads you to"
+18007 print "the central console and together you"
+18008 print "step inside the huge conductor"
+18009 print "supplying wireless power all over the"
+18010 print "continent and beyond."
+18011 print ""
+18020 print "The magnetic field grabs both of you"
+18030 print "and extends your consciousness to the"
+18031 print "neighbouring towers in New Jersey,"
+18032 print "Toronto and the rest of the East Coast."
+18033 print "In a split second you have spread"
+18034 print "yourselves across the continent, then"
+18035 print "feel the sun rising in Tokyo while it's"
+18036 print "still dark in London. You and Lady,"
+18037 print "Lady and you. The world."
+18038 gosub 1000
+18050 print "{white}The tune will come to you at last"
+18051 print "When all are one and one is all"
+18060 return
 
 40000 rem read in event descriptions
 40100 for i=1 to ne
