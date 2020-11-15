@@ -5,7 +5,7 @@
 20 in$="": rem input from player
 21 x$="": rem random temp string variable
 22 i=0:j=0: rem loop variables
-30 ne=12: rem number of events
+30 ne=13: rem number of events
 31 nl=25: rem number of lines per event
 32 dim el$(ne, nl): rem event text lines
 
@@ -383,4 +383,16 @@
 52210 data "the tower, all the way to the top."
 52211 data "@"
 
+52300 data "You and Nikola are climbing the outer"
+52301 data "wall stairway of the tower to heaven."
+52302 data "Your shadow cast by the flashs of"
+52303 data "lighting is tall as your soul, as you"
+52304 data "drag your exhausted feet up the stairs,"
+52305 data "fighting the strong wind. And then,"
+52306 data "finally, you are at the roof, under the"
+52307 data "huge hemisphere. There is a door at the"
+52308 data "side of the pillar supporting the"
+52309 data "aerial."
+52310 data "@"
+      
 
