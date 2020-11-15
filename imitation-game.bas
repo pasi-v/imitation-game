@@ -1,8 +1,8 @@
 10 gosub 9800: rem screen setup
-11 rem gosub 9900: rem title and intro
+11 gosub 9900: rem title and intro
 
 19 rem variables
-20 a$="": rem input from player
+20 in$="": rem input from player
 21 x$="": rem random temp string variable
 22 i=0:j=0: rem loop variables
 30 ne=2: rem number of events
@@ -11,12 +11,15 @@
 
 40 gosub 40000: rem read event data into el$(,)
 
-50 e = 1: gosub 2000: rem print event 1
-
+50 e = 1: rem start at event 1
+55 gosub 2000: rem print event/location based on e
+60 gosub 2200: rem read command into co$
+70 gosub 3000: rem update state variable
+90 goto 55
 100 end
 
 1000 print "                --more--"
-1001 get zz$:if zz$="" goto 1001
+1001 get in$:if in$="" goto 1001
 1002 return
 
 2000 rem print event from el$(e)
@@ -26,7 +29,17 @@
 2040   print x$
 2050 next i
 2050 return
-
+     
+2200 rem read command
+2210 input co$:if co$="" then 2210
+2220 return
+     
+3000 rem update state
+3001 if co$="quit" or co$="exit" then end
+3010 if e=1 and co$="mallorn" then e=2
+3500 return
+     
+     
 9800 rem screen setup
 9810 print chr$(14): rem upper-lowercase characters
 9815 poke 53280,0:poke 53281,0
@@ -74,8 +87,8 @@
 10044 print "You are in the ground floor lobby."
 10045 print "There is an {wht}elevator{lblu}."
 10046 print "Removeme: say enter"
-10050 input a$
-10060 if a$="enter" then a$="": goto 10080
+10050 input in$
+10060 if in$="enter" then in$="": goto 10080
 10070 print "I did not understand": goto 10050
 10080 print "You enter the elevator. It recognises"
 10081 print "you. 'Destination: Top floor' it says"
@@ -88,8 +101,8 @@
 10088 print "penthouse office."
 10089 print
 10090 print "Removeme: say enter"
-10095 input a$
-10096 if a$="enter" then a$="": goto 10100
+10095 input in$
+10096 if in$="enter" then in$="": goto 10100
 10097 print "I did not understand": goto 10095
 10100 print "A pale, almost glowing figure in white"
 10101 print "dress is standing at the other end of"
@@ -193,9 +206,9 @@
 
 40400 rem read in one event
 40410 for j=1 to nl
-40420   read x$
-40430   el$(i,j) = x$
-40440   if x$="@" then return
+40420     read x$
+40430     el$(i,j) = x$
+40440     if x$="@" then return
 40450 next j
 40460 return
 
@@ -222,3 +235,4 @@
 50121 data "Maybe your assistant has something to"
 50122 data "say."
 50123 data "@"
+
