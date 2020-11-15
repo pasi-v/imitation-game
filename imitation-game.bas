@@ -5,13 +5,13 @@
 20 in$="": rem input from player
 21 x$="": rem random temp string variable
 22 i=0:j=0: rem loop variables
-30 ne=11: rem number of events
+30 ne=12: rem number of events
 31 nl=25: rem number of lines per event
 32 dim el$(ne, nl): rem event text lines
 
 40 gosub 40000: rem read event data into el$(,)
 
-50 e = 10: rem start at event
+50 e = 11: rem start at event
 55 gosub 2000: rem print event/location based on e
 60 gosub 2200: rem read command into co$
 70 gosub 3000: rem update state variable
@@ -48,6 +48,7 @@
 3100 if e=9 and co$="talk" then e=10: return
 3110 if e=10 and co$="enter" then e=11: return
 3120 if e=11 and co$="right" then e=12: return
+3130 if e=12 and co$="climb" then e=13: return
 3500 return
      
      
@@ -368,3 +369,18 @@
 52110 data "You come to a fork in the tunnel."
 52111 data "There are routes left and right."
 52112 data "@"
+      
+52200 rem event 12
+52201 data "You emerge from the tunnels and find"
+52202 data "yourself under the huge steel structure"
+52203 data "of the Tesla tower. It glows in light"
+52204 data "blue as the lightings flash in the"
+52205 data "clouds and hit the tower itself. The"
+52206 data "noise of the thunder is deafening. You"
+52207 data "smell the ozone and a metallic taste"
+52208 data "enters your mouth. There are"
+52209 data "maintenance stairs on the outer wall of"
+52210 data "the tower, all the way to the top."
+52211 data "@"
+
+
