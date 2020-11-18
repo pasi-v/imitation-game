@@ -2,11 +2,16 @@
 
 19 rem variables
 20 in$="": co$="": ob$="": rem input, command and object from player
-21 x$="": rem random temp string variable
+21 x$="":x=0: rem random variables used inside subroutines
 22 i=0:j=0: rem loop variables
+   
+29 rem global constants
 30 ne=14: rem number of events
 31 nl=25: rem number of lines per event
 32 dim el$(ne, nl): rem event text lines
+   
+35 rem global state
+36 e=1: pe=1: rem event and previous event
 
 40 gosub 40000: rem read event data into el$(,)
    
@@ -16,8 +21,6 @@
 53 if e>ne then end
 55 gosub 2000: rem print event/location based on e
 60 gosub 2200: rem read command into co$ and ob$
-61 print co$
-62 print ob$
 70 gosub 2500: rem check generic commands
 80 gosub 3000: rem update state variable
 90 goto 53
@@ -56,7 +59,7 @@
 2600 return
      
      
-3000 rem update state
+3000 rem update state: TODO: ON E GOSUB 5000, 5100, 5200, ...?
 3010 if e=1 and co$="mallorn" then e=2: return
 3020 if e=2 and co$="sit" then e=3: return: rem any command
 3030 if e=3 and co$="talk" then e=4: return
