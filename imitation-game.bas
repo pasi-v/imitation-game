@@ -22,7 +22,7 @@
 90 goto 53
 100 end
 
-1000 print "                --more--"
+1000 print "               --more--"
 1001 get in$:if in$="" goto 1001
 1002 return
 
@@ -111,9 +111,8 @@
 10024 gosub 1000: rem more
 10044 print "You are in the ground floor lobby."
 10045 print "There is an {wht}elevator{lblu}."
-10046 print "Removeme: say enter"
 10050 gosub 2200: rem read command
-10060 if co$="enter" or co$="go" or ob$="elevator" then 10080
+10060 if co$="enter" or co$="go" or co$="elevator" or ob$="elevator" then 10080
 10070 print "I did not understand": goto 10050
 10080 print "You enter the elevator. It recognises"
 10081 print "you. 'Destination: Top floor' it says"
@@ -123,11 +122,10 @@
 10085 print "throat, then the elevator stops and the"
 10086 print "door opens. Your only way forward is"
 10087 print "through the door into the huge"
-10088 print "penthouse office."
+10088 print "penthouse {wht}office{lblu}."
 10089 print
-10090 print "Removeme: say enter"
-10095 input in$
-10096 if in$="enter" then in$="": goto 10100
+10095 gosub 2200: rem read command
+10096 if co$="enter" or co$="go" or co$="office" or ob$="office" then 10100
 10097 print "I did not understand": goto 10095
 10100 print "A pale, almost glowing figure in white"
 10101 print "dress is standing at the other end of"
@@ -167,8 +165,8 @@
 10147 print "mission.'"
 10150 print
 10151 print "'Good luck, friend. And remember:"
-10152 print "In a tree by the brook, there's a"
-10153 print "songbird who sings.'"
+10152 print "{white}In a tree by the brook, there's a"
+10153 print "songbird who sings.{lblu}'"
 10160 print
 10161 print "You are dismissed and find yourself"
 10162 print "back in the elevator, travelling"
@@ -180,19 +178,19 @@
 10182 print "head. Then your world bursts into pain"
 10183 print "and confusion as you feel the chip"
 10184 print "powering up."
-10185 gosub 1000
-10190 gosub 13000
-10200 gosub 14000
+10185 gosub 1000: rem more
+10190 gosub 13000: rem guru meditation
+10200 gosub 14000: rem talking to nikola
 12000 return
 
 13000 print "{clr}{red}"
 13001 print "{rvon}                                       "
 13002 print "{rvon} {rvof}                                     {rvon} "
-13003 print "{rvon} {rvof}  Software Failure. Rebooting...     {rvon} "
-13004 print "{rvon} {rvof}  Guru Meditation #10071856.ACDC     {rvon} "
+13003 print "{rvon} {rvof}  Software Failure.   Rebooting...   {rvon} "
+13004 print "{rvon} {rvof}  Guru Meditation     #10071856.ACDC {rvon} "
 13005 print "{rvon} {rvof}                                     {rvon} "
 13006 print "{rvon}                                       "
-13010 get zz$:if zz$="" goto 13010
+13010 get in$:if in$="" goto 13010
 13020 return
 
 14000 print "{clr}{white}"
