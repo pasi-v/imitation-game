@@ -1,8 +1,7 @@
 10 gosub 9800: rem screen setup
-11 rem gosub 9900: rem title and intro
 
 19 rem variables
-20 in$="": rem input from player
+20 in$="": co$="": ob$="": rem input, command and object from player
 21 x$="": rem random temp string variable
 22 i=0:j=0: rem loop variables
 30 ne=14: rem number of events
@@ -10,11 +9,15 @@
 32 dim el$(ne, nl): rem event text lines
 
 40 gosub 40000: rem read event data into el$(,)
+   
+45 rem gosub 9900: rem title and intro
 
-50 e = 13: rem start at event
+50 e = 1: rem start at event
 53 if e>ne then end
 55 gosub 2000: rem print event/location based on e
 60 gosub 2200: rem read command into co$
+61 print co$
+62 print ob$
 70 gosub 3000: rem update state variable
 90 goto 53
 100 end
@@ -31,9 +34,16 @@
 2050 next i
 2050 return
      
-2200 rem read command
-2210 input co$:if co$="" then 2210
-2220 return
+2200 rem read command and object to co$ and ob$
+2210 input in$:if in$="" then 2210
+2220 co$="": ob$=""
+2230 i=0: rem location of space
+2240 for j=1 to len(in$)
+2250     if mid$(in$, j, 1)=" " then i=j
+2260 next j
+2270 if i>0 then ob$=right$(in$, len(in$)-i):co$=left$(in$, i-1):return
+2280 co$=in$: rem else
+2300 return
      
 3000 rem update state
 3001 if co$="quit" then end
@@ -66,8 +76,8 @@
 9930 print "       An interactive short story"
 9931 print
 9932 print
-9933 print "     Please use lowercase commands,"
-9934 print "     like 'enter' or 'talk to jack'."
+9933 print "  Please use one or two word lowercase"
+9934 print " commands, like 'enter' or 'talk jack'."
 9935 print
 9940 gosub 1000: rem more
 9950 gosub 10000: rem intro
