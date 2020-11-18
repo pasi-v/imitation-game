@@ -10,7 +10,7 @@
 
 40 gosub 40000: rem read event data into el$(,)
    
-45 rem gosub 9900: rem title and intro
+45 gosub 9900: rem title and intro
 
 50 e = 1: rem start at event
 53 if e>ne then end
@@ -112,8 +112,8 @@
 10044 print "You are in the ground floor lobby."
 10045 print "There is an {wht}elevator{lblu}."
 10046 print "Removeme: say enter"
-10050 input in$
-10060 if in$="enter" then in$="": goto 10080
+10050 gosub 2200: rem read command
+10060 if co$="enter" or co$="go" or ob$="elevator" then 10080
 10070 print "I did not understand": goto 10050
 10080 print "You enter the elevator. It recognises"
 10081 print "you. 'Destination: Top floor' it says"
