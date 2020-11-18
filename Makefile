@@ -1,16 +1,16 @@
-TARGETS := imitation-game
+TARGET := imitation-game.prg
 X64 := /usr/local/bin/x64sc
 PETCAT := /usr/local/bin/petcat
 
 .PRECIOUS: %.d64
 
-all: $(TARGETS)
+all: $(TARGET)
 
 imitation-game.prg: imitation-game.bas
 	$(PETCAT) -w2 -o imitation-game.prg -- imitation-game.bas
 
-%: %.prg
+run: $(TARGET)
 	$(X64) -basicload $<
 
 clean:
-	rm -f $(TARGETS) *.prg
+	rm -f *.prg
