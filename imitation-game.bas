@@ -10,15 +10,16 @@
 
 40 gosub 40000: rem read event data into el$(,)
    
-45 gosub 9900: rem title and intro
+45 rem gosub 9900: rem title and intro
 
 50 e = 1: rem start at event
 53 if e>ne then end
 55 gosub 2000: rem print event/location based on e
-60 gosub 2200: rem read command into co$
+60 gosub 2200: rem read command into co$ and ob$
 61 print co$
 62 print ob$
-70 gosub 3000: rem update state variable
+70 gosub 2500: rem check generic commands
+80 gosub 3000: rem update state variable
 90 goto 53
 100 end
 
@@ -45,8 +46,14 @@
 2280 co$=in$: rem else
 2300 return
      
+2500 rem generic commands
+2510 if co$="talk" or co$="nikola" then gosub 4000: return
+2520 if co$="help" then gosub 3600: return
+2530 if co$="quit" then gosub 3650: return 
+2600 return
+     
+     
 3000 rem update state
-3001 if co$="quit" then end
 3010 if e=1 and co$="mallorn" then e=2: return
 3020 if e=2 and co$="sit" then e=3: return: rem any command
 3030 if e=3 and co$="talk" then e=4: return
@@ -63,6 +70,25 @@
 3140 if e=13 and co$="enter" then e=14: return
 3150 if e=14 then e=15:gosub 15000: return: rem outro
 3500 return
+     
+3600 rem help
+3610 print"Your job is to get to the Tesla Tower"
+3611 print "and deliver the data packet inside"
+3612 print "head there. Your VI Nikola will"
+3613 print "assist you. Say 'talk' or 'nikola'"
+3614 print "to contact your assistant.":print
+3620 print "Otherwise use one or two-word"
+3621 print "commands like talk jack or enter."
+3622 return
+     
+3650 rem quit
+3610 print "Are you sure? (y/n)"
+3620 input in$:if in$="y" then end
+3630 return
+     
+4000 rem talk to nikola
+4010 print "Hi! I can't talk yet."
+4020 return
      
      
 9800 rem screen setup
