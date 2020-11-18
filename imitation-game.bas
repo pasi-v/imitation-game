@@ -49,7 +49,10 @@
 2500 rem generic commands
 2510 if co$="talk" or co$="nikola" then gosub 4000: return
 2520 if co$="help" then gosub 3600: return
-2530 if co$="quit" then gosub 3650: return 
+2530 if co$="quit" then gosub 3650: return
+2540 if co$="inventory" then gosub 3700: return
+2550 if co$="shoot" or co$="attack" or co$="kill" then gosub 3750: return
+2560 if co$="take" or co$="get" then gosub 3800: return
 2600 return
      
      
@@ -74,17 +77,30 @@
 3600 rem help
 3610 print"Your job is to get to the Tesla Tower"
 3611 print "and deliver the data packet inside"
-3612 print "head there. Your VI Nikola will"
+3612 print "your head there. Your VI Nikola will"
 3613 print "assist you. Say 'talk' or 'nikola'"
 3614 print "to contact your assistant.":print
 3620 print "Otherwise use one or two-word"
-3621 print "commands like talk jack or enter."
+3621 print "commands like 'talk jack' or 'enter'."
 3622 return
      
 3650 rem quit
 3610 print "Are you sure? (y/n)"
 3620 input in$:if in$="y" then end
 3630 return
+     
+3700 rem inventory
+3710 print "You are carrying your (t)rusty old"
+3720 print "Tesla-manufactured magblaster."
+3720 return
+     
+3750 rem shoot
+3760 print "That would only get you arrested."
+3770 return
+     
+3800 rem try to take something
+3850 if ob$="" then print "Um, no. That would be stealing.": return
+3860 print "You don't really need ";ob$: return
      
 4000 rem talk to nikola
 4010 print "Hi! I can't talk yet."
