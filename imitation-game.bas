@@ -21,8 +21,8 @@
 53 if e>ne then end
 55 gosub 2000: rem print event/location based on e
 60 gosub 2200: rem read command into co$ and ob$
-70 gosub 2500: rem check generic commands
-80 gosub 3000: rem update state variable
+70 gosub 3000: rem check state-specific commands
+90 gosub 2500: rem check generic commands
 90 goto 53
 100 end
 
@@ -125,19 +125,27 @@
 3970 return
      
 4000 rem talk to nikola
-4010 print "Hi! I can't talk yet."
-4020 return
+4010 if e=2 then gosub 5000: return
+4020 print "Hi! I can't talk yet."
+4030 return
+     
+5000 rem talking to nikola in mallorn
+5010 print:print "{white}I'll do a little scan around here...":print
+5011 print "Hey, have a look at those two!"
+5012 print "There's something strange about one of"
+5013 print "them, maybe the Lady meant her...{lblu}":print
+5014 e=3: rem advance to next event
+5015 return
      
 6000 rem event 1: riverside
 6010 if co$="mallorn" or ob$="mallorn" or co$="enter" then e=2
 6020 return
      
 6100 rem event 2: mallorn
-6110 if co$="sit" then e=3: rem TODO: sit makes no sense here
 6120 return
      
 6200 rem event 3: with agnus and denise
-6210 if co$="talk" then e=4
+6210 if co$="talk" and (ob$="agnus" or ob$="denise") then e=4
 6220 return
      
 6300 rem event 4: band about to play
@@ -491,7 +499,10 @@
 50208 data "flickers as she moves, so much that you"
 50209 data "can not be quite sure whether she is"
 50210 data "real or an electrogram."
-50211 data "@"
+50220 data ""
+50221 data "You hear them call each other {wht}Agnus{lblu}"
+50222 data "and {wht}Denise{lblu}."
+50220 data "@"
       
 50400 data "'Denise, would you please contact"
 50401 data "Paula, and tell her that there is a fan"
