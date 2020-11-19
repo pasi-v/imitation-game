@@ -56,25 +56,26 @@
 2540 if co$="inventory" then gosub 3700: return
 2550 if co$="shoot" or co$="attack" or co$="kill" then gosub 3750: return
 2560 if co$="take" or co$="get" then gosub 3800: return
+2570 if co$="save" then gosub 3850: return
+2580 if co$="load" then gosub 3900: return
 2600 return
      
      
-3000 rem update state: TODO: ON E GOSUB 5000, 5100, 5200, ...?
-3010 if e=1 and co$="mallorn" then e=2: return
-3020 if e=2 and co$="sit" then e=3: return: rem any command
-3030 if e=3 and co$="talk" then e=4: return
-3040 if e=4 and co$="listen" then e=5: return
-3050 if e=5 and co$="exit" then e=6: return
-3060 if e=6 and co$="hole" then e=7: return
-3070 if e=7 and co$="open" then print "It is locked.": return
-3080 if e=7 and co$="computer" then e=8: return: rem add guru
-3090 if e=8 and co$="talk" then e=9: return
-3100 if e=9 and co$="talk" then e=10: return
-3110 if e=10 and co$="enter" then e=11: return
-3120 if e=11 and co$="right" then e=12: return
-3130 if e=12 and co$="climb" then e=13: return
-3140 if e=13 and co$="enter" then e=14: return
-3150 if e=14 then e=15:gosub 15000: return: rem outro
+3000 rem update state:
+3010 if e=1 then gosub 6000: return: rem riverside
+3020 if e=2 then gosub 6100: return: rem mallorn
+3030 if e=3 then gosub 6200: return: rem agnus and denise
+3040 if e=4 then gosub 6300: return: rem band starting
+3050 if e=5 then gosub 6400: return: rem listen to riddle
+3060 if e=6 then gosub 6500: return: rem back outside
+3070 if e=7 then gosub 6600: return
+3090 if e=8 then gosub 6700: return
+3100 if e=9 then gosub 6800: return
+3110 if e=10 then gosub 6900: return
+3120 if e=11 then gosub 7000: return
+3130 if e=12 then gosub 7100: return
+3140 if e=13 then gosub 7200: return
+3150 if e=14 then gosub 7300: :gosub 15000: return: rem outro
 3500 return
      
 3600 rem help
@@ -102,13 +103,78 @@
 3770 return
      
 3800 rem try to take something
-3850 if ob$="" then print "Um, no. That would be stealing.": return
-3860 print "You don't really need ";ob$: return
+3810 if ob$="" then print "Um, no. That would be stealing.": return
+3820 print "You don't really need ";ob$: return
+     
+3850 rem save
+3860 print "Next time you play, say 'load ";e;"'"
+3870 return
+     
+3900 rem load
+3910 e=val(ob$)
+3920 return
      
 4000 rem talk to nikola
 4010 print "Hi! I can't talk yet."
 4020 return
      
+6000 rem event 1: riverside
+6010 if co$="mallorn" then e=2
+6020 return
+     
+6100 rem event 2: mallorn
+6110 if co$="sit" then e=3: rem TODO: sit makes no sense here
+6120 return
+     
+6200 rem event 3: with agnus and denise
+6210 if co$="talk" then e=4
+6220 return
+     
+6300 rem event 4: band about to play
+6310 if co$="listen" then e=5
+6320 return
+     
+6400 rem event 5
+6410 if co$="exit" then e=6
+6420 return
+     
+6500 rem event 6
+6510 if co$="hole" then e=7
+6520 return
+     
+6600 rem event 7
+6610 if co$="open" then print "It is locked.": return
+6620 if co$="computer" then e=8
+6630 rem TODO: add guru
+6640 return
+     
+6700 rem event 8
+6710 if co$="talk" then e=9: rem TODO: talk makes no sense here
+6720 return
+     
+6800 rem event 9 - meet Alan
+6810 if co$="talk" then e=10
+6820 return
+     
+6900 rem event 10 - tunnels opened
+6910 if co$="enter" then e=11
+6920 return
+     
+7000 rem event 11 - in the tunnels
+7010 if co$="right" then e=12
+7020 return
+     
+7100 rem event 12 - under the tower
+7110 if co$="climb" then e=13
+7120 return
+     
+7200 rem event 13 - top of the tower
+7210 if co$="enter" then e=14
+7220 return
+     
+7300 rem event 14 - inside control room
+7310 e=15
+7320 return
      
 9800 rem screen setup
 9810 print chr$(14): rem upper-lowercase characters
