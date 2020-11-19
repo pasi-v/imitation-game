@@ -11,7 +11,7 @@
 32 dim el$(ne, nl): rem event text lines
    
 35 rem global state
-36 e=1: pe=1: rem event and previous event
+36 e=1: pe=0: rem event and previous printed event
 
 40 gosub 40000: rem read event data into el$(,)
    
@@ -31,12 +31,14 @@
 1002 return
 
 2000 rem print event from el$(e)
+2001 if e=pe then return
 2010 for i = 1 to nl
 2020   x$ = el$(e, i)
-2030   if x$ = "@" then return
+2030   if x$ = "@" then pe=e: return
 2040   print x$
 2050 next i
-2050 return
+2060 pe=e
+2070 return
      
 2200 rem read command and object to co$ and ob$
 2210 input in$:if in$="" then 2210
@@ -58,6 +60,7 @@
 2560 if co$="take" or co$="get" then gosub 3800: return
 2570 if co$="save" then gosub 3850: return
 2580 if co$="load" then gosub 3900: return
+2590 if co$="look" then gosub 3950: return
 2600 return
      
      
@@ -86,7 +89,10 @@
 3614 print "to contact your assistant.":print
 3620 print "Otherwise use one or two-word"
 3621 print "commands like 'talk jack' or 'enter'."
-3622 return
+3622 print "'look': reprint event/location"
+3623 print "'save': get a token to continue later"
+3624 print "'quit': quit the game"
+3640 return
      
 3650 rem quit
 3610 print "Are you sure? (y/n)"
@@ -114,12 +120,16 @@
 3910 e=val(ob$)
 3920 return
      
+3950 rem look
+3960 pe=e-1
+3970 return
+     
 4000 rem talk to nikola
 4010 print "Hi! I can't talk yet."
 4020 return
      
 6000 rem event 1: riverside
-6010 if co$="mallorn" then e=2
+6010 if co$="mallorn" or ob$="mallorn" or co$="enter" then e=2
 6020 return
      
 6100 rem event 2: mallorn
