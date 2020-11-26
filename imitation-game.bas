@@ -4,20 +4,18 @@
 20 in$="": co$="": ob$="": rem input, command and object from player
 21 x$="":x=0: rem random variables used inside subroutines
 22 i=0:j=0: rem loop variables
+23 e=0: rem event number, 0=intro
+24 u=0: rem command understood, 0=no, 1=yes
    
 29 rem global constants
 30 ne=14: rem number of events
 31 nl=25: rem number of lines per event
 32 dim el$(ne, nl): rem event text lines
    
-35 rem global state
-36 e=1: pe=0: rem event and previous printed event
-
 40 gosub 40000: rem read event data into el$(,)
-   
-45 rem gosub 9900: rem title and intro
+45 gosub 9900: rem title and intro
 
-50 e = 1: rem start at event
+50 if e=0 then e=1: pe=0: rem event and previous printed event
 53 if e>ne then end
 55 gosub 2000: rem print event/location based on e
 60 gosub 2200: rem read command into co$ and ob$
@@ -41,9 +39,10 @@
 2070 return
      
 2200 rem read command and object to co$ and ob$
+2205 u=0: rem command not yet understood
 2210 input in$:if in$="" then 2210
 2220 co$="": ob$=""
-2230 i=0: rem location of space
+2230 i=0: rem location of (last) space
 2240 for j=1 to len(in$)
 2250     if mid$(in$, j, 1)=" " then i=j
 2260 next j
@@ -52,15 +51,15 @@
 2300 return
      
 2500 rem generic commands
-2510 if co$="talk" or co$="nikola" then gosub 4000: return
-2520 if co$="help" then gosub 3600: return
-2530 if co$="quit" then gosub 3650: return
-2540 if co$="inventory" then gosub 3700: return
-2550 if co$="shoot" or co$="attack" or co$="kill" then gosub 3750: return
-2560 if co$="take" or co$="get" then gosub 3800: return
-2570 if co$="save" then gosub 3850: return
-2580 if co$="load" then gosub 3900: return
-2590 if co$="look" then gosub 3950: return
+2510 if co$="talk" or co$="nikola" then gosub 4000: u=1: return
+2520 if co$="help" then gosub 3600: u=1: return
+2530 if co$="quit" then gosub 3650: u=1: return
+2540 if co$="inventory" then gosub 3700: u=1: return
+2550 if co$="shoot" or co$="attack" or co$="kill" then gosub 3750: u=1: return
+2560 if co$="take" or co$="get" then gosub 3800: u=1: return
+2570 if co$="save" then gosub 3850: u=1: return
+2580 if co$="load" then gosub 3900: u=1: return
+2590 if co$="look" then gosub 3950: u=1:return
 2600 return
      
      
@@ -105,7 +104,7 @@
 3720 return
      
 3750 rem shoot
-3760 print "That would only get you arrested."
+3760 if e <= ne then print "That would only get you arrested."
 3770 return
      
 3800 rem try to take something
@@ -125,12 +124,14 @@
 3970 return
      
 4000 rem talk to nikola
+4005 if e=0 then print "You mutter to yourself.":return
 4010 if e=2 then gosub 5000: return
 4020 print "Hi! I can't talk yet."
 4030 return
      
 5000 rem talking to nikola in mallorn
-5010 print:print "{white}I'll do a little scan around here...":print
+5005 print:print "{white}I think we are in the right place..."
+5010 print "I'll run a little scan of the room...":print
 5011 print "Hey, have a look at those two!"
 5012 print "There's something strange about one of"
 5013 print "them, maybe the Lady meant her...{lblu}":print
@@ -138,60 +139,60 @@
 5015 return
      
 6000 rem event 1: riverside
-6010 if co$="mallorn" or ob$="mallorn" or co$="enter" then e=2
+6010 if co$="mallorn" or ob$="mallorn" or co$="enter" then e=2:u=1
 6020 return
      
 6100 rem event 2: mallorn
 6120 return
      
 6200 rem event 3: with agnus and denise
-6210 if co$="talk" and (ob$="agnus" or ob$="denise") then e=4
+6210 if co$="talk" and (ob$="agnus" or ob$="denise") then e=4:u=1
 6220 return
      
 6300 rem event 4: band about to play
-6310 if co$="listen" then e=5
+6310 if co$="listen" then e=5:u=1
 6320 return
      
 6400 rem event 5
-6410 if co$="exit" then e=6
+6410 if co$="exit" then e=6:u=1
 6420 return
      
 6500 rem event 6
-6510 if co$="hole" then e=7
+6510 if co$="hole" then e=7:u=1
 6520 return
      
 6600 rem event 7
-6610 if co$="open" then print "It is locked.": return
-6620 if co$="computer" then e=8
+6610 if co$="open" then print "It is locked.": u=1: return
+6620 if co$="computer" then e=8: u=1
 6630 rem TODO: add guru
 6640 return
      
 6700 rem event 8
-6710 if co$="talk" then e=9: rem TODO: talk makes no sense here
+6710 if co$="talk" then e=9: u=1: rem TODO: talk makes no sense here
 6720 return
      
 6800 rem event 9 - meet Alan
-6810 if co$="talk" then e=10
+6810 if co$="talk" then e=10: u=1
 6820 return
      
 6900 rem event 10 - tunnels opened
-6910 if co$="enter" then e=11
+6910 if co$="enter" then e=11: u=1
 6920 return
      
 7000 rem event 11 - in the tunnels
-7010 if co$="right" then e=12
+7010 if co$="right" then e=12: u=1
 7020 return
      
 7100 rem event 12 - under the tower
-7110 if co$="climb" then e=13
+7110 if co$="climb" then e=13: u=1
 7120 return
      
 7200 rem event 13 - top of the tower
-7210 if co$="enter" then e=14
+7210 if co$="enter" then e=14: u=1
 7220 return
      
 7300 rem event 14 - inside control room
-7310 e=15
+7310 e=15: u=1
 7320 return
      
 9800 rem screen setup
@@ -241,7 +242,10 @@
 10044 print "You are in the ground floor lobby."
 10045 print "There is an {wht}elevator{lblu}."
 10050 gosub 2200: rem read command
-10060 if co$="enter" or co$="go" or co$="elevator" or ob$="elevator" then 10080
+10055 gosub 2500: rem check generic commands
+10056 if u=1 then goto 10050: rem was generic
+10057 if e <> 0 then return: rem loaded game
+10060 if co$="enter" or co$="elevator" or ob$="elevator" then u=1:goto 10080
 10070 print "I did not understand": goto 10050
 10080 print "You enter the elevator. It recognises"
 10081 print "you. 'Destination: Top floor' it says"
@@ -282,7 +286,7 @@
 10130 print
 10131 print "You are not. But you make the mistake"
 10132 print "of looking at her smiling eyes. And"
-10133 print "hear yourself bowing and saying"
+10133 print "find yourself bowing and saying"
 10134 print "something stupid."
 10140 print
 10141 print "'Very well. Plug this in' she says,"
@@ -414,8 +418,8 @@
 17024 print "think. Once again, nothing gained.": print
 17025 print "'Um, what about me?' Nikola asks."
 17026 print ""
-17027 print "Ooh, it makes you wonder."
-17030 return
+17027 print "{white}Ooh, it makes you wonder.{lblu}"
+17030 end
       
 18000 rem join the lady ending
 18001 print "You step forward and grab her hand."
@@ -441,7 +445,7 @@
 18038 gosub 1000
 18050 print "{white}The tune will come to you at last"
 18051 print "When all are one and one is all"
-18060 return
+18060 end
 
 40000 rem read in event descriptions
 40100 for i=1 to ne
@@ -479,7 +483,7 @@
 50104 data "singing. You listen to them for a while"
 50105 data "until the song fades away and the"
 50106 data "audience starts clapping and cheering."
-50107 data "'Paula and the three Sids' the singer"
+50107 data "'Paula and the three Sids!' the singer"
 50108 data "announces. 'We will be back on stage"
 50109 data "after a short break!'"
 50110 data ""
