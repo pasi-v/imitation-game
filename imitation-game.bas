@@ -312,6 +312,8 @@
 10183 print "and confusion as you feel the chip"
 10184 print "powering up."
 10185 gosub 1000: rem more
+10188 g1$="{rvon} {rvof}  Software Failure.   Rebooting...   {rvon} "
+10189 g2$="{rvon} {rvof}  Guru Meditation     #10071856.ACDC {rvon} "
 10190 gosub 13000: rem guru meditation
 10200 gosub 14000: rem talking to nikola
 12000 return
@@ -319,8 +321,8 @@
 13000 print "{clr}{red}"
 13001 print "{rvon}                                       "
 13002 print "{rvon} {rvof}                                     {rvon} "
-13003 print "{rvon} {rvof}  Software Failure.   Rebooting...   {rvon} "
-13004 print "{rvon} {rvof}  Guru Meditation     #10071856.ACDC {rvon} "
+13003 print g1$
+13004 print g2$
 13005 print "{rvon} {rvof}                                     {rvon} "
 13006 print "{rvon}                                       "
 13010 get in$:if in$="" goto 13010
