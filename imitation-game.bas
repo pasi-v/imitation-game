@@ -18,6 +18,7 @@
 50 if e=0 then e=1: pe=0: rem event and previous printed event
 53 if e>ne then end
 55 gosub 2000: rem print event/location based on e
+56 gosub 8000: rem pre-event things
 60 gosub 2200: rem read command into co$ and ob$
 70 gosub 3000: rem check state-specific commands
 90 gosub 2500: rem check generic commands
@@ -164,11 +165,10 @@
 6600 rem event 7
 6610 if co$="open" then print "It is locked.": u=1: return
 6620 if co$="computer" then e=8: u=1
-6630 rem TODO: add guru
-6640 return
+6660 return
      
-6700 rem event 8
-6710 if co$="talk" then e=9: u=1: rem TODO: talk makes no sense here
+6700 rem event 8 - waking up
+6710 e=9: u=1
 6720 return
      
 6800 rem event 9 - meet Alan
@@ -194,6 +194,16 @@
 7300 rem event 14 - inside control room
 7310 e=15: u=1
 7320 return
+     
+8000 rem pre-events
+8010 if e=8 then gosub 8100: return
+8020 return
+     
+8100 rem pre event 8
+8105 gosub 1000: rem more
+8110 g1$="{rvon} {rvof}  Hardware Failure.   Rebooting...   {rvon} "
+8120 g2$="{rvon} {rvof}  Guru Meditation     #03011892.ACDC {rvon} "
+8130 gosub 13000:gosub 2000:return: rem hackish: print event
      
 9800 rem screen setup
 9810 print chr$(14): rem upper-lowercase characters
@@ -326,6 +336,7 @@
 13005 print "{rvon} {rvof}                                     {rvon} "
 13006 print "{rvon}                                       "
 13010 get in$:if in$="" goto 13010
+13015 print"{clr}{lblu}"
 13020 return
 
 14000 print "{clr}{white}"
