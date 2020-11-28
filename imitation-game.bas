@@ -125,18 +125,28 @@
 3970 return
      
 4000 rem talk to nikola
-4005 if e=0 then print "You mutter to yourself.":return
-4010 if e=2 then gosub 5000: return
-4020 print "Hi! I can't talk yet."
-4030 return
+4001 print "{pur}"
+4005 if e=0 then print "You mutter to yourself.": goto 4030
+4010 if e=2 then gosub 5000: e=3: goto 4030
+4020 gosub 4100: rem real talking
+4030 print "{lblu}":return
+     
+4100 rem talking to nikola
+4110 print "Hi! I can't talk yet."
+4120 input a$: if a$="" then goto 4120
+4130 if a$="bye" then return
+4135 rem todo: handle input, generate answer, print it
+4140 an$="Yeah, I agree."
+4150 print an$
+4160 goto 4120
+4900 return
      
 5000 rem talking to nikola in mallorn
-5005 print:print "{white}I think we are in the right place..."
+5005 print:print "I think we are in the right place..."
 5010 print "I'll run a little scan of the room...":print
 5011 print "Hey, have a look at those two!"
 5012 print "There's something strange about one of"
-5013 print "them, maybe the Lady meant her...{lblu}":print
-5014 e=3: rem advance to next event
+5013 print "them, maybe the Lady meant her...":print
 5015 return
      
 6000 rem event 1: riverside
