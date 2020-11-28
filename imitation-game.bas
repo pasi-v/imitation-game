@@ -189,9 +189,14 @@
 6710 e=9: u=1
 6720 return
      
-6800 rem event 9 - meet Alan
-6810 if co$="talk" then e=10: u=1
-6820 return
+6800 rem event 9 - meet Alan and friends
+6810 if co$<>"talk" then return
+6820 if ob$="alan" then ch=4: goto 6860
+6830 if ob$="ada" then ch=5: goto 6860
+6840 if ob$="charles" then ch=6: goto 6860
+6850 return: rem else
+6860 gosub 4100: e=10: u=1
+6890 return
      
 6900 rem event 10 - tunnels opened
 6910 if co$="enter" then e=11: u=1
@@ -632,8 +637,8 @@
 50911 data "never know."
 50912 data ""
 50920 data "'Good evening, sir' says the man in"
-50921 data "the suit. 'My name is Alan and these"
-50922 data "are my friends Charles and Ada. We"
+50921 data "the suit. 'My name is {wht}Alan{lblu} and these"
+50922 data "are my friends {wht}Charles{lblu} and {wht}Ada{lblu}. We"
 50923 data "were just about to start a little game"
 50924 data "I have invented, and your friend"
 50925 data "Nikola told us you might be interested"
