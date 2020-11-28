@@ -21,13 +21,15 @@
 56 gosub 8000: rem pre-event things
 60 gosub 2200: rem read command into co$ and ob$
 70 gosub 3000: rem check state-specific commands
-90 gosub 2500: rem check generic commands
+90 if u=0 then gosub 2500: rem check generic commands
 90 goto 53
 100 end
 
 1000 print "               --more--"
 1001 get in$:if in$="" goto 1001
 1002 return
+     
+1010 input in$: if in$="" then goto 1010: return
 
 2000 rem print event from el$(e)
 2001 if e=pe then return
@@ -41,7 +43,7 @@
      
 2200 rem read command and object to co$ and ob$
 2205 u=0: rem command not yet understood
-2210 input in$:if in$="" then 2210
+2210 gosub 1010: rem read in$
 2220 co$="": ob$=""
 2230 i=0: rem location of (last) space
 2240 for j=1 to len(in$)
@@ -64,7 +66,7 @@
 2600 return
      
      
-3000 rem update state:
+3000 rem state-specific handling, sets u=1 if co$ matches
 3010 if e=1 then gosub 6000: return: rem riverside
 3020 if e=2 then gosub 6100: return: rem mallorn
 3030 if e=3 then gosub 6200: return: rem agnus and denise
@@ -133,8 +135,8 @@
      
 4100 rem talking to nikola
 4110 print "Hi! I can't talk yet."
-4120 input a$: if a$="" then goto 4120
-4130 if a$="bye" then return
+4120 gosub 1010: rem read to in$
+4130 if in$="bye" then return
 4135 rem todo: handle input, generate answer, print it
 4140 an$="Yeah, I agree."
 4150 print an$
@@ -149,6 +151,17 @@
 5013 print "them, maybe the Lady meant her...":print
 5015 return
      
+5100 rem talking to agnus
+5110 print "{lred}Hi, I'm Agnus!"
+5120 gosub 1010: rem read to in$
+5130 if in$="bye" then goto 5200
+5135 rem todo: handle input, generate answer, print it
+5140 an$="Yeah, I agree."
+5150 print an$
+5160 goto 5120
+5200 print "{lblu}":return
+     
+     
 6000 rem event 1: riverside
 6010 if co$="mallorn" or ob$="mallorn" or co$="enter" then e=2:u=1
 6020 return
@@ -157,7 +170,8 @@
 6120 return
      
 6200 rem event 3: with agnus and denise
-6210 if co$="talk" and (ob$="agnus" or ob$="denise") then e=4:u=1
+6205 rem TODO: set e=4 only after talking to either of them
+6210 if co$="talk" and (ob$="agnus" or ob$="denise") then gosub 5100: e=4:u=1
 6220 return
      
 6300 rem event 4: band about to play
