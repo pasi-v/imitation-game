@@ -206,7 +206,7 @@
      
 6600 rem event 7
 6610 if co$="open" then print "It is locked.": u=1: return
-6620 if co$="computer" then e=8: u=1
+6620 if ob$="computer" then e=8: u=1
 6660 return
      
 6700 rem event 8 - waking up
