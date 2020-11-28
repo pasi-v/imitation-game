@@ -168,7 +168,17 @@
 4630 ad=1: an$="That is correct.":return
      
 4700 rem ada
-4710 an$="Ada agrees with you.": return
+4705 if in$="charles" then goto 4760
+4710 x=int(rnd(0)*3)+1: an$=""
+4720 on x gosub 4730, 4740, 4750: return
+4730 print "The Analytical Engine has no pretensios"
+4731 print "whatever to originate anything. It can"
+4732 print "do whatever we know how to order it to"
+4733 print "perform.": return
+4740 print "That brain of mine is something more"
+4741 print "than merely mortal, as time will show.": return
+4750 print "I shall, in due time, be a Poet.": return
+4760 an$="He is the smartest AI I know.": return
      
 4800 rem charles
 4810 an$="Charles agrees with you.": return
