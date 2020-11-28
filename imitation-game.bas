@@ -138,7 +138,8 @@
 4030 print "{lblu}":return
      
 4100 rem talking; input: ch:character index
-4110 ad=0: print cl$(ch); "Hi! I can't talk yet."
+4110 ad=0: print cl$(ch)
+4115 on ch gosub 5400, 5500, 5600, 5700, 5800, 5900
 4120 gosub 1010: rem read to in$
 4130 if in$="bye" then goto 4200
 4135 rem todo: handle input, generate answer, print it
@@ -164,7 +165,7 @@
 4630 ad=1: an$="That is correct.":return
      
 4700 rem ada
-4710 an$="Ada agreee with you.": return
+4710 an$="Ada agrees with you.": return
      
 4800 rem charles
 4810 an$="Charles agrees with you.": return
@@ -176,6 +177,32 @@
 5012 print "There's something strange about one of"
 5013 print "them, maybe the Lady meant her...":print
 5015 return
+     
+5400 rem nikola
+5401 print "Hiya pilgrim, what can I do for you?": return
+     
+5500 rem agnus
+5501 print "Awrite! Hou ar ye?": return
+     
+5600 rem denise
+5601 print "Hello, I'm Denise, how may I help you?": return
+     
+5700 rem alan
+5701 print "Good evening. How do you do?"
+5702 print "I'd like to know which one you consider"
+5703 print "an intelligent being, Ada or Charles."
+5704 print "The name of the game is that you get to"
+5705 print "talk to them and determine it yourself."
+5710 return
+     
+5800 rem ada
+5801 print "Good evening. I am Lady Ada Lovelace."
+5802 print "I must say it is a great pleasure"
+5803 print "to meet you.": return
+     
+5900 rem charles
+5901 print "-now hold on for a moment..."
+5902 print "What was it you were saying?": return
      
 6000 rem event 1: riverside
 6010 if co$="mallorn" or ob$="mallorn" or co$="enter" then e=2:u=1
@@ -640,7 +667,7 @@
 50702 data "enter the tunnel. There are dim and red"
 50703 data "magnetic lamps barely lighting the"
 50704 data "tunnel, which opens into a cavern. An"
-50705 data "old PET model computer is still on a"
+50705 data "old PET model {wht}computer{lblu} is still on a"
 50706 data "table, leftovers from a bygone era."
 50707 data "There is a heavy door on the other side"
 50708 data "of the cavern with a sign 'Property of"
