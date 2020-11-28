@@ -9,6 +9,7 @@
 25 dim cl$(6): rem colours
 26 ch=1: rem character index, 1=nikola
 27 ad=0: rem advance event after talking if ad=1
+28 ri=0: rem how many times turned right in tunnels
    
 29 rem global constants
 30 ne=14: rem number of events
@@ -226,8 +227,12 @@
 6920 return
      
 7000 rem event 11 - in the tunnels
-7010 if co$="right" then e=12: u=1
-7020 return
+7020 if co$="right" then n=n+1: u=1: if n>2 then e=12: u=1: return
+7030 if co$="left" then n=0: u=1
+7035 print "You are in a maze of tunnels, all alike."
+7040 print "You come to a fork in the tunnel."
+7050 print "There are routes {wht}left{lblu} and {wht}right{lblu}."
+7060 return
      
 7100 rem event 12 - under the tower
 7110 if co$="climb" then e=13: u=1
