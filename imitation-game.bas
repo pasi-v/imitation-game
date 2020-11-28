@@ -8,6 +8,7 @@
 24 u=0: rem command understood, 0=no, 1=yes
 25 dim cl$(6): rem colours
 26 ch=1: rem character index, 1=nikola
+27 ad=0: rem advance event after talking if ad=1
    
 29 rem global constants
 30 ne=14: rem number of events
@@ -135,14 +136,34 @@
 4030 print "{lblu}":return
      
 4100 rem talking; input: ch:character index
-4110 print cl$(ch); "Hi! I can't talk yet."
+4110 ad=0: print cl$(ch); "Hi! I can't talk yet."
 4120 gosub 1010: rem read to in$
-4130 if in$="bye" then goto 4900
+4130 if in$="bye" then goto 4200
 4135 rem todo: handle input, generate answer, print it
-4140 an$="Yeah, I agree."
+4140 on ch gosub 4000, 4400, 4500, 4600, 4700, 4800
 4150 print an$
-4160 goto 4120
-4900 print "{lblu}":return
+4160 if ad=1 then goto 4200  
+4170 goto 4120
+4200 print "{lblu}":return
+     
+4400 rem agnus
+4410 if in$="songbird" then goto 4430
+4420 an$="Agnus agrees with you.": return
+4430 ad=1: an$="Songbird, eh? The Lady sent you?": return
+     
+4500 rem denise
+4510 if in$="songbird" then goto 4530
+4520 an$="Denise agrees with you.": return
+4530 ad=1: an$="Songbirds are beutiful. Like the Lady.": return
+     
+4600 rem alan
+4610 an$="Alan agrees with you.": return
+     
+4700 rem ada
+4710 an$="Ada agreee with you.": return
+     
+4800 rem charles
+4810 an$="Charles agrees with you.": return
      
 5000 rem talking to nikola in mallorn
 5005 print:print cl$(1); "I think we are in the right place..."
@@ -165,7 +186,7 @@
 6220 if ob$="agnus" then ch=2: goto 6250
 6230 if ob$="denise" then ch=3: goto 6250
 6240 return: rem else
-6250 gosub 4100: e=4: u=1
+6250 gosub 4100: u=1: if ad=1 then e=4: ad=0
 6260 return
      
 6300 rem event 4: band about to play
