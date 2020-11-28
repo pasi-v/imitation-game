@@ -157,7 +157,9 @@
 4530 ad=1: an$="Songbirds are beutiful. Like the Lady.": return
      
 4600 rem alan
-4610 an$="Alan agrees with you.": return
+4610 if in$="both" then goto 4630
+4620 an$="Alan agrees with you.": return
+4630 ad=1: an$="That is correct.":return
      
 4700 rem ada
 4710 an$="Ada agreee with you.": return
@@ -216,7 +218,7 @@
 6830 if ob$="ada" then ch=5: goto 6860
 6840 if ob$="charles" then ch=6: goto 6860
 6850 return: rem else
-6860 gosub 4100: e=10: u=1
+6860 gosub 4100: u=1: if ad=1 then e=10: ad=0
 6890 return
      
 6900 rem event 10 - tunnels opened
@@ -666,10 +668,10 @@
 50926 data "in participating.'"
 50927 data "@"
       
-52000 data "'You are correct' Alan says as he"
+52000 data "Alan bows at you slightly as he"
 52001 data "opens the door. 'We have deemed you"
 52002 data "worthy to pass through this door we"
-52003 data "guard. Remember the song as you"
+52003 data "guard. Remember our song as you"
 52004 data "continue your journey.'"
 52005 data "@"
       
