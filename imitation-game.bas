@@ -253,8 +253,8 @@
 10045 print "There is an {wht}elevator{lblu}."
 10050 gosub 2200: rem read command
 10055 gosub 2500: rem check generic commands
-10056 if u=1 then goto 10050: rem was generic
-10057 if e <> 0 then return: rem loaded game
+10056 if e <> 0 then return: rem loaded game
+10057 if u=1 then goto 10050: rem was generic
 10060 if co$="enter" or co$="elevator" or ob$="elevator" then u=1:goto 10080
 10070 print "I did not understand": goto 10050
 10080 print "You enter the elevator. It recognises"
