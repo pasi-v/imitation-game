@@ -201,7 +201,7 @@
 6420 return
      
 6500 rem event 6
-6510 if co$="hole" then e=7:u=1
+6510 if co$="enter" or co$="open" or ob$="hole" or ob$="crate" then e=7:u=1
 6520 return
      
 6600 rem event 7
@@ -627,10 +627,10 @@
       
 50600 data "You leave the Mallorn bar and return to"
 50601 data "the river front. Remembering the song"
-50602 data "lyrics, you notice a metal crate next"
+50602 data "lyrics, you notice a metal {wht}crate{lblu} next"
 50603 data "to a large tree on the river bank. It"
 50604 data "looks like some kind of maintenance"
-50605 data "hole for the rain water drainage"
+50605 data "{wht}hole{lblu} for the rain water drainage"
 50606 data "system."
 50607 data "@" 
       
