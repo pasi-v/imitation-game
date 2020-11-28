@@ -33,7 +33,8 @@
 1001 get in$:if in$="" goto 1001
 1002 return
      
-1010 input in$: if in$="" then goto 1010: return
+1010 input in$: if in$="" then goto 1010
+1020 return
 
 2000 rem print event from el$(e)
 2001 if e=pe then return
@@ -463,12 +464,12 @@
 15072 print "something... extraordinary.'"
 15200 print "'Well, make your choice."
 15201 print "Join me, or stay here.'"
-15210 print "removeme: shoot or join"
-15220 input in$: if in$="" then 15220
-15230 if in$="shoot" then gosub 17000: return
-15340 if in$="join" then gosub 18000: return
+15220 gosub 2200
+15230 if co$="shoot" or co$="stay" or co$="no" then gosub 17000: return
+15340 if co$="join" or co$="yes" then gosub 18000: return
+15345 if co$="talk" then print "Nikola? No answer."
 15350 goto 15220
-16000 return
+16000 rem return
       
 17000 rem shoot the console ending
 17001 print "You pull out your blaster and fire"
