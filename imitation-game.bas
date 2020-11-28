@@ -6,6 +6,8 @@
 22 i=0:j=0: rem loop variables
 23 e=0: rem event number, 0=intro
 24 u=0: rem command understood, 0=no, 1=yes
+25 dim cl$(6): rem colours
+26 ch=1: rem character index, 1=nikola
    
 29 rem global constants
 30 ne=14: rem number of events
@@ -127,40 +129,28 @@
 3970 return
      
 4000 rem talk to nikola
-4001 print "{pur}"
 4005 if e=0 then print "You mutter to yourself.": goto 4030
 4010 if e=2 then gosub 5000: e=3: goto 4030
-4020 gosub 4100: rem real talking
+4020 ch=1: gosub 4100: rem real talking
 4030 print "{lblu}":return
      
-4100 rem talking to nikola
-4110 print "Hi! I can't talk yet."
+4100 rem talking; input: ch:character index
+4110 print cl$(ch); "Hi! I can't talk yet."
 4120 gosub 1010: rem read to in$
-4130 if in$="bye" then return
+4130 if in$="bye" then goto 4900
 4135 rem todo: handle input, generate answer, print it
 4140 an$="Yeah, I agree."
 4150 print an$
 4160 goto 4120
-4900 return
+4900 print "{lblu}":return
      
 5000 rem talking to nikola in mallorn
-5005 print:print "I think we are in the right place..."
+5005 print:print cl$(1); "I think we are in the right place..."
 5010 print "I'll run a little scan of the room...":print
 5011 print "Hey, have a look at those two!"
 5012 print "There's something strange about one of"
 5013 print "them, maybe the Lady meant her...":print
 5015 return
-     
-5100 rem talking to agnus
-5110 print "{lred}Hi, I'm Agnus!"
-5120 gosub 1010: rem read to in$
-5130 if in$="bye" then goto 5200
-5135 rem todo: handle input, generate answer, print it
-5140 an$="Yeah, I agree."
-5150 print an$
-5160 goto 5120
-5200 print "{lblu}":return
-     
      
 6000 rem event 1: riverside
 6010 if co$="mallorn" or ob$="mallorn" or co$="enter" then e=2:u=1
@@ -171,7 +161,7 @@
      
 6200 rem event 3: with agnus and denise
 6205 rem TODO: set e=4 only after talking to either of them
-6210 if co$="talk" and (ob$="agnus" or ob$="denise") then gosub 5100: e=4:u=1
+6210 if co$="talk" and (ob$="agnus" or ob$="denise") then ch=2: gosub 4100: e=4:u=1
 6220 return
      
 6300 rem event 4: band about to play
@@ -501,6 +491,9 @@
 40150   rem next j
 40160   gosub 40400
 40200 next i
+40210 rem character colours
+40220 cl$(1)="{pur}":cl$(2)="{lred}":cl$(3)="{cyn}":cl$(4)="{yel}"
+40230 cl$(5)="{orng}":cl$(6)="{lgrn}"
 40300 return
 
 40400 rem read in one event
