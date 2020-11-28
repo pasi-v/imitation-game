@@ -169,6 +169,7 @@
      
 4700 rem ada
 4705 if in$="charles" then goto 4760
+4706 if in$="alan" then goto 4770
 4710 x=int(rnd(0)*3)+1: an$=""
 4720 on x gosub 4730, 4740, 4750: return
 4730 print "The Analytical Engine has no pretensios"
@@ -179,9 +180,25 @@
 4741 print "than merely mortal, as time will show.": return
 4750 print "I shall, in due time, be a Poet.": return
 4760 an$="He is the smartest AI I know.": return
+4770 an$="He programmed Charles.": return
      
 4800 rem charles
-4810 an$="Charles agrees with you.": return
+4805 if in$="ada" then goto 4860
+4806 if in$="alan" then goto 4870
+4810 x=int(rnd(0)*3)+1: an$=""
+4820 on x gosub 4830, 4840, 4850: return
+4830 print "Errors using inadequate data are much"
+4831 print "less than those using no data at all."
+4833 return
+4840 print "If you put into the machine wrong"
+4841 print "figures, will the right answers come"
+4842 print "out?": return
+4850 print "At each increase of knowledge, as well"
+4851 print "as on the contrivance of every new"
+4852 print "tool, human labour becomes"
+4853 print "abridged.": return
+4860 an$="She is the smartest AI I know.": return
+4870 an$="He programmed Ada.": return
      
 5000 rem talking to nikola in mallorn
 5005 print:print cl$(1); "I think we are in the right place..."
