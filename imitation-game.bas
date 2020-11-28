@@ -151,12 +151,18 @@
      
 4400 rem agnus
 4410 if in$="songbird" then goto 4430
-4420 an$="Och! That's guid!": return
+4412 x=int(rnd(0)*3)+1: an$=""
+4413 if x=1 then an$="Slainte!": return
+4414 if x=2 then an$="Whit's new?": return
+4415 if x=3 then an$="Och! That's guid!": return
 4430 ad=1: an$="Songbird, ay? The Lady sent ye?": return
      
 4500 rem denise
 4510 if in$="songbird" then goto 4530
-4520 an$="That sounds really interesting!": return
+4512 x=int(rnd(0)*3)+1: an$=""
+4513 if x=1 then an$="I want my MTV!": return
+4514 if x=2 then an$="I should be so lucky!": return
+4515 if x=3 then an$="Who ya gonna call?": return
 4530 ad=1: an$="Songbirds are beautiful. Like the Lady.": return
      
 4600 rem alan
