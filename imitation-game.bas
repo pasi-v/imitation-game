@@ -255,7 +255,7 @@
 8200 rem pre event 14
 8205 gosub 1000: rem more
 8210 g1$="{rvon} {rvof}  Neural Failure.     Aborting...    {rvon} "
-8220 g2$="{rvon} {rvof}  Guru Meditation     #29111986.ACDC {rvon} "
+8220 g2$="{rvon} {rvof}  Guru Meditation     #23061912.ACDC {rvon} "
 8230 gosub 13000:gosub 2000:return: rem hackish: print event
      
 9800 rem screen setup
@@ -270,7 +270,7 @@
 9931 print
 9932 print
 9933 print "  Please use one or two word lowercase"
-9934 print " commands, like 'enter' or 'talk jack'."
+9934 print " commands, like 'help' or 'talk jack'."
 9935 print
 9940 gosub 1000: rem more
 9950 gosub 10000: rem intro
@@ -298,7 +298,7 @@
 10038 print "invitation; the typical private eye of"
 10039 print "West Chester, PA, did not get invited"
 10040 print "to these towers of the high and mighty."
-10041 print "But here you are, in spite of all your"
+10041 print "But here you are, despite of your"
 10042 print "'I have a bad feeling about this'."
 10043 print
 10024 gosub 1000: rem more
@@ -682,7 +682,7 @@
 52104 data "used since."
 52105 data ""
 52110 data "You come to a fork in the tunnel."
-52111 data "There are routes left and right."
+52111 data "There are routes {wht}left{lblu} and {wht}right{lblu}."
 52112 data "@"
       
 52200 rem event 12
