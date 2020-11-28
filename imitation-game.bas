@@ -161,8 +161,12 @@
      
 6200 rem event 3: with agnus and denise
 6205 rem TODO: set e=4 only after talking to either of them
-6210 if co$="talk" and (ob$="agnus" or ob$="denise") then ch=2: gosub 4100: e=4:u=1
-6220 return
+6210 if co$<>"talk" then return
+6220 if ob$="agnus" then ch=2: goto 6250
+6230 if ob$="denise" then ch=3: goto 6250
+6240 return: rem else
+6250 gosub 4100: e=4: u=1
+6260 return
      
 6300 rem event 4: band about to play
 6310 if co$="listen" then e=5:u=1
