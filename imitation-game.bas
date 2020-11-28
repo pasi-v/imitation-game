@@ -193,7 +193,7 @@
 6260 return
      
 6300 rem event 4: band about to play
-6310 if co$="listen" then e=5:u=1
+6310 e=5:u=1: rem just wait and they play
 6320 return
      
 6400 rem event 5
