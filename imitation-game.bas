@@ -151,17 +151,20 @@
      
 4400 rem agnus
 4410 if in$="songbird" then goto 4430
-4420 an$="Agnus agrees with you.": return
-4430 ad=1: an$="Songbird, eh? The Lady sent you?": return
+4420 an$="Och! That's guid!": return
+4430 ad=1: an$="Songbird, ay? The Lady sent ye?": return
      
 4500 rem denise
 4510 if in$="songbird" then goto 4530
-4520 an$="Denise agrees with you.": return
-4530 ad=1: an$="Songbirds are beutiful. Like the Lady.": return
+4520 an$="That sounds really interesting!": return
+4530 ad=1: an$="Songbirds are beautiful. Like the Lady.": return
      
 4600 rem alan
 4610 if in$="both" then goto 4630
-4620 an$="Alan agrees with you.": return
+4612 if in$="ada" then an$="True. But not entirely.": return
+4615 if in$="charles" then an$="True. But try harder.": return
+4617 if in$="alan" then an$="You are too kind.": return
+4620 an$="Interesting proposition. But not the    answer.": return
 4630 ad=1: an$="That is correct.":return
      
 4700 rem ada
@@ -686,7 +689,7 @@
 50904 data "aged gentleman in an almost modern"
 50905 data "suit, the others, an old man and a"
 50906 data "younger woman, appear to be dressed in"
-50907 data "a very old-fashined style. Or maybe"
+50907 data "a very old-fashioned style. Or maybe"
 50908 data "they are at the top of the pop fashion"
 50909 data "and you are in some underground new"
 50910 data "wave club. This is the 80's, you can"
