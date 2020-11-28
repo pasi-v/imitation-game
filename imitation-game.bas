@@ -192,11 +192,12 @@
 7220 return
      
 7300 rem event 14 - inside control room
-7310 e=15: u=1
-7320 return
+7340 e=15: u=1
+7350 return
      
 8000 rem pre-events
 8010 if e=8 then gosub 8100: return
+8015 if e=14 then gosub 8200: return
 8020 return
      
 8100 rem pre event 8
@@ -204,6 +205,12 @@
 8110 g1$="{rvon} {rvof}  Hardware Failure.   Rebooting...   {rvon} "
 8120 g2$="{rvon} {rvof}  Guru Meditation     #03011892.ACDC {rvon} "
 8130 gosub 13000:gosub 2000:return: rem hackish: print event
+     
+8200 rem pre event 14
+8205 gosub 1000: rem more
+8210 g1$="{rvon} {rvof}  Neural Failure.     Aborting...    {rvon} "
+8220 g2$="{rvon} {rvof}  Guru Meditation     #29111986.ACDC {rvon} "
+8230 gosub 13000:gosub 2000:return: rem hackish: print event
      
 9800 rem screen setup
 9810 print chr$(14): rem upper-lowercase characters
