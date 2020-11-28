@@ -239,7 +239,7 @@
 7120 return
      
 7200 rem event 13 - top of the tower
-7210 if co$="enter" then e=14: u=1
+7210 if co$="enter" or co$="open" or ob$="door" then e=14: u=1
 7220 return
      
 7300 rem event 14 - inside control room
