@@ -147,7 +147,7 @@
 4150 print an$
 4160 if ad=1 then goto 4200  
 4170 goto 4120
-4200 print "{lblu}":return
+4200 an$="":print "{lblu}":return
      
 4400 rem agnus
 4410 if in$="songbird" then goto 4430
@@ -248,7 +248,6 @@
 6120 return
      
 6200 rem event 3: with agnus and denise
-6205 rem TODO: set e=4 only after talking to either of them
 6210 if co$<>"talk" then return
 6220 if ob$="agnus" then ch=2: goto 6250
 6230 if ob$="denise" then ch=3: goto 6250
@@ -261,11 +260,11 @@
 6320 return
      
 6400 rem event 5
-6410 if co$="exit" then e=6:u=1
+6410 if co$="exit" or co$="leave" then e=6:u=1
 6420 return
      
 6500 rem event 6
-6510 if co$="enter" or co$="open" or ob$="hole" or ob$="crate" then e=7:u=1
+6510 if co$="enter" or co$="open" or ob$="hole" or ob$="grate" then e=7:u=1
 6520 return
      
 6600 rem event 7
@@ -291,8 +290,8 @@
 6920 return
      
 7000 rem event 11 - in the tunnels
-7020 if co$="right" then n=n+1: u=1: if n>2 then e=12: u=1: return
-7030 if co$="left" then n=0: u=1
+7020 if co$="right" or ob$="right" then n=n+1: u=1: if n>2 then e=12:u=1:return
+7030 if co$="left" or ob$="left" then n=0: u=1
 7035 print "You are in a maze of tunnels, all alike."
 7040 print "You come to a fork in the tunnel."
 7050 print "There are routes {wht}left{lblu} and {wht}right{lblu}."
@@ -352,7 +351,7 @@
 10013 print "the lightning bolts striking from cloud"
 10014 print "to cloud and at the silver skyscrapers."
 10015 print "The weather had been like this ever"
-10016 print "since the huge Tesla towers had been"
+10016 print "since the huge Tesla towers were"
 10017 print "built in all the major cities across"
 10018 print "the country, transferring wireless"
 10019 print "energy and drawing in enormous"
@@ -414,14 +413,14 @@
 10119 print "data packet to a location that can not"
 10120 gosub 1000
 10121 print "be reached wirelessly. The Tesla"
-10122 print "Tower. I hope you are interested."
+10122 print "Tower. I hope you are interested.'"
 10130 print
 10131 print "You are not. But you make the mistake"
 10132 print "of looking at her smiling eyes. And"
 10133 print "find yourself bowing and saying"
 10134 print "something stupid."
 10140 print
-10141 print "'Very well. Plug this in' she says,"
+10141 print "'Very well. Plug this in', she says,"
 10142 print "giving you a chip. 'This is a"
 10143 print "completely new prototype Commodore"
 10144 print "model, and the data packet is inside"
@@ -691,7 +690,7 @@
       
 50600 data "You leave the Mallorn bar and return to"
 50601 data "the river front. Remembering the song"
-50602 data "lyrics, you notice a metal {wht}crate{lblu} next"
+50602 data "lyrics, you notice a metal {wht}grate{lblu} next"
 50603 data "to a large tree on the river bank. It"
 50604 data "looks like some kind of maintenance"
 50605 data "{wht}hole{lblu} for the rain water drainage"
@@ -699,13 +698,13 @@
 50607 data "@" 
       
 50700 data "Nikola sends a signal to the electric"
-50701 data "lock, and you open the rusty gate and"
+50701 data "lock, and you open the rusty grate and"
 50702 data "enter the tunnel. There are dim and red"
 50703 data "magnetic lamps barely lighting the"
 50704 data "tunnel, which opens into a cavern. An"
 50705 data "old PET model {wht}computer{lblu} is still on a"
 50706 data "table, leftovers from a bygone era."
-50707 data "There is a heavy door on the other side"
+50707 data "There is a heavy {wht}door{lblu} on the other side"
 50708 data "of the cavern with a sign 'Property of"
 50709 data "Tesla corporation. No trespassing'."
 50710 data "@"
@@ -738,7 +737,7 @@
 50927 data "@"
       
 52000 data "Alan bows at you slightly as he"
-52001 data "opens the door. 'We have deemed you"
+52001 data "opens the {wht}door{lblu}. 'We have deemed you"
 52002 data "worthy to pass through this door we"
 52003 data "guard. Remember our song as you"
 52004 data "continue your journey.'"
