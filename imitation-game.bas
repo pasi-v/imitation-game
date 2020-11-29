@@ -351,16 +351,24 @@
 6920 return
      
 7000 rem event 11 - in the tunnels
-7020 if co$="right" or ob$="right" then n=n+1: u=1: if n>2 then e=12:u=1:return
+7020 if co$="right" or ob$="right" then n=n+1: u=1: if n>2 then goto 7080
 7030 if co$="left" or ob$="left" then n=0: u=1
 7035 print "You are in a maze of tunnels, all alike."
 7040 print "You come to a fork in the tunnel."
 7050 print "There are routes {wht}left{lblu} and {wht}right{lblu}."
 7060 return
+7070 rem transform to Act III
+7080 gosub 7150: e=12:u=1:return
      
 7100 rem event 12 - under the tower
 7110 if co$="climb" or ob$="stairs" then e=13: u=1
 7120 return
+     
+7150 rem act iii
+7151 gosub 1000
+7152 print "{clr}":print:print
+7153 print "    {pur}Act III: Stairway to Heaven{lblu}":print:print
+7154 gosub 1000:print"{clr}":return
      
 7200 rem event 13 - top of the tower
 7210 if co$="enter" or co$="open" or ob$="door" then e=14: u=1
@@ -393,15 +401,19 @@
 9820 return
 
 9900 rem title screen
-9920 print "{clr}             Imitation Game"
+9920 print "{clr}             {pur}Imitation Game{lblu}"
 9921 print
 9930 print "       An interactive short story"
-9931 print
-9932 print
-9933 print "  Please use one or two word lowercase"
-9934 print " commands, like 'help' or 'talk jack'."
-9935 print
+9931 print:print
+9932 print "         By Pasi Valkkynen, 2020"
+9936 print
+9937 print "  Please use one or two word lowercase"
+9938 print " commands, like 'help' or 'talk jack'."
+9939 print
 9940 gosub 1000: rem more
+9941 print "{clr}":print:print
+9942 print "         {pur}Act I: The Two Towers{lblu}":print:print
+9943 gosub 1000
 9950 gosub 10000: rem intro
 9960 return
 
@@ -509,6 +521,9 @@
 10190 gosub 13000: rem guru meditation
 10200 gosub 14000: rem print Nikola's greeting
 10210 gosub 1000
+10220 print "{clr}":print:print
+10230 print "          {pur}Act II: The Riddle{lblu}":print:print
+10240 gosub 1000:print"{clr}"
 12000 return
 
 13000 print "{clr}{red}"
@@ -530,8 +545,8 @@
 14012 print "anytime by thinking 'talk' or"
 14013 print "'nikola'. Whenever you have no idea"
 14014 print "what to do next, ask me for 'help'."
-14015 print "Say 'bye' when you don't want to talk"
-14016 print "to me anymore."
+14015 print "Say '{wht}bye{pur}' when you don't want to talk"
+14016 print "to me anymore. Or someone else."
 14020 print
 14021 print "Our mission is to reach the Tesla tower"
 14022 print "and install there the small program you"
@@ -613,9 +628,12 @@
 17023 print "passing out. 'One of these nights' you"
 17024 print "think. Once again, nothing gained.": print
 17025 print "'{pur}Um, what about me?{lblu}' Nikola asks."
-17026 print ""
-17027 print "{white}Ooh, it makes you wonder.{lblu}"
-17030 end
+17026 gosub 1000
+17027 print "{clr}":print:print
+17028 print "{white}      Ooh, it makes you wonder."
+17029 print:print:print"             The End"
+17030 get in$:if in$="" goto 17030
+17040 end
       
 18000 rem join the lady ending
 18001 print "You step forward and grab her hand."
@@ -639,8 +657,11 @@
 18036 print "still dark in London. You and Lady,"
 18037 print "Lady and you. The world."
 18038 gosub 1000
-18050 print "{white}The tune will come to you at last"
-18051 print "When all are one and one is all"
+18040 print "{clr}":print:print
+18050 print "{white}  The tune will come to you at last"
+18051 print "  When all are one and one is all."
+18052 print:print:print"              The End"
+18055 get in$:if in$="" goto 18055
 18060 end
 
 40000 rem read in event descriptions
