@@ -154,7 +154,8 @@
      
 4300 rem nikola
 4305 if in$="help" or in$="hint" then gosub 5050: return
-4310 an$="TODO: Generic chatter with Nikola":return
+4310 if in$="riddle" then gosub 5300: return
+4320 an$="TODO: Generic chatter with Nikola":return
      
      
 4400 rem agnus
@@ -234,6 +235,18 @@
 5170 if e=12 then an$="Up, up and away! The stairs!": return
 5180 if e=13 then an$="We are close. Let's open the door.": return
 5200 an$="I have no idea. We should not be here.": return
+     
+5300 rem riddle
+5310 print "  {white}Near a tree by a river"
+5311 print "  There's a hole in the ground"
+5312 print "  Where an old man and Ada"
+5314 print "  Go around and around"
+5315 print "  Alan's mind is a beacon"
+5316 print "  In the veil of the night"
+5317 print "  For a strange kind of fashion"
+5318 print "  There's a wrong and a right"
+5319 print "  But he'll never, never fight over you{pur}"
+5320 an$="": return
      
 5400 rem nikola
 5401 print "Hiya pilgrim! What can I do for you?": return
