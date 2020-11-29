@@ -153,10 +153,34 @@
 4200 print "{lblu}":return
      
 4300 rem nikola
-4305 if in$="help" or in$="hint" then gosub 5050: return
-4310 if in$="riddle" then gosub 5300: return
-4320 an$="TODO: Generic chatter with Nikola":return
-     
+4301 if in$="help" or in$="hint" then gosub 5050: return
+4302 if in$="riddle" then gosub 5300: return
+4303 if in$="lady" or in$="laurelin" then goto 4350
+4304 if in$="tesla" then goto 4360
+4305 if in$="nikola" or in$="you" then goto 4370
+4306 if in$="yes" then an$="YES!": return
+4307 if in$="no" then an$="I would have preferred yes.": return
+4308 if in$="songbird" then an$="Probably some password.": return
+4309 if in$="tower" then goto 4380
+4310 if in$="agnus" or in$="denise" then an$="Let's talk to them.":return
+4311 if in$="paula" then an$="Songbird who sings!": return
+4312 if in$="alan" then an$="Even greater than the great Tesla!": return
+4313 if in$="ada" then an$="I wish I was programmed by her.": return
+4314 if in$="charles" then an$="He's quite analytical, don't you think?": return
+4320 an$="I'm not really an expert on that topic.":return
+4350 print "Our boss. Kind of scary at times."
+4351 an$="But isn't she lovely?":return
+4360 print "Tesla is the greates inventor of our"
+4361 print "time. Without his genius we would not"
+4362 print "have wireless data or power transfer."
+4363 print "Or me."
+4364 an$="His first name is Nikola too. So great!": return
+4370 print "Me? I'm THE state of the art virtual"
+4371 print "intelligence."
+4372 an$="I'm awesome, don't you think?": return
+4380 print "Tesla tower is heavily guarded, but"
+4381 an$="we can sneak inside using our wits.": return
+4399 return
      
 4400 rem agnus
 4410 if in$="songbird" then goto 4430
@@ -832,5 +856,3 @@
 52413 data "hear yourself and Nikola screaming in"
 52414 data "agony. Then silence and darkness."
 52415 data "@"
-      
-
