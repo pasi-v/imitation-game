@@ -35,6 +35,9 @@
      
 1010 input in$: if in$="" then goto 1010
 1020 return
+     
+1100 input in$: if in$="" then goto 1100
+1110 return
 
 2000 rem print event from el$(e)
 2001 if e=pe then return
@@ -140,14 +143,18 @@
 4100 rem talking; input: ch:character index
 4110 ad=0: print cl$(ch)
 4115 on ch gosub 5400, 5500, 5600, 5700, 5800, 5900
-4120 gosub 1010: rem read to in$
+4120 gosub 1100: rem read to in$
 4130 if in$="bye" then goto 4200
-4135 rem todo: handle input, generate answer, print it
-4140 on ch gosub 4000, 4400, 4500, 4600, 4700, 4800
-4150 print an$
+4137 an$=""
+4140 on ch gosub 4300, 4400, 4500, 4600, 4700, 4800
+4150 if an$<>"" then print an$
 4160 if ad=1 then goto 4200  
 4170 goto 4120
-4200 an$="":print "{lblu}":return
+4200 print "{lblu}":return
+     
+4300 rem nikola
+4310 an$="TODO: Generic chatter with Nikola":return
+     
      
 4400 rem agnus
 4410 if in$="songbird" then goto 4430
@@ -251,6 +258,8 @@
 6210 if co$<>"talk" then return
 6220 if ob$="agnus" then ch=2: goto 6250
 6230 if ob$="denise" then ch=3: goto 6250
+6235 if ob$="nikola" or ob$="" then ch=1: goto 6250
+6237 print ob$;" is not here.": ch=0: u=1: return
 6240 return: rem else
 6250 gosub 4100: u=1: if ad=1 then e=4: ad=0
 6260 return
@@ -281,7 +290,8 @@
 6820 if ob$="alan" then ch=4: goto 6860
 6830 if ob$="ada" then ch=5: goto 6860
 6840 if ob$="charles" then ch=6: goto 6860
-6850 return: rem else
+6845 if ob$="" or ob$="nikola" then ch=1: goto 6860
+6847 print ob$;" is not here.": ch=0: u=1: return
 6860 gosub 4100: u=1: if ad=1 then e=10: ad=0
 6890 return
      
