@@ -153,6 +153,7 @@
 4200 print "{lblu}":return
      
 4300 rem nikola
+4305 if in$="help" or in$="hint" then gosub 5050: return
 4310 an$="TODO: Generic chatter with Nikola":return
      
      
@@ -220,6 +221,9 @@
 5012 print "There's something strange about one of"
 5013 print "them, maybe the Lady meant her...":print
 5015 return
+     
+5050 rem hints from nikola, based on event
+5060 an$="TODO: Hint from Nikola": return
      
 5400 rem nikola
 5401 print "Hiya pilgrim! What can I do for you?": return
