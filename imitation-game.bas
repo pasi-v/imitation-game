@@ -326,14 +326,14 @@
      
 8100 rem pre event 8
 8105 gosub 1000: rem more
-8110 g1$="{rvon} {rvof}  Hardware Failure.   Rebooting...   {rvon} "
-8120 g2$="{rvon} {rvof}  Guru Meditation     #03011892.ACDC {rvon} "
+8110 g1$="   Hardware Failure.   Rebooting...    "
+8120 g2$="   Guru Meditation     #03011892.ACDC  "
 8130 gosub 13000:gosub 2000:return: rem hackish: print event
      
 8200 rem pre event 14
 8205 gosub 1000: rem more
-8210 g1$="{rvon} {rvof}  Neural Failure.     Aborting...    {rvon} "
-8220 g2$="{rvon} {rvof}  Guru Meditation     #23061912.ACDC {rvon} "
+8210 g1$="   Neural Failure.     Aborting...     "
+8220 g2$="   Guru Meditation     #23061912.ACDC  "
 8230 gosub 13000:gosub 2000:return: rem hackish: print event
      
 9800 rem screen setup
@@ -453,20 +453,20 @@
 10183 print "and confusion as you feel the chip"
 10184 print "powering up."
 10185 gosub 1000: rem more
-10188 g1$="{rvon} {rvof}  Software Failure.   Rebooting...   {rvon} "
-10189 g2$="{rvon} {rvof}  Guru Meditation     #10071856.ACDC {rvon} "
+10188 g1$="   Software Failure.   Rebooting...    "
+10189 g2$="   Guru Meditation     #10071856.ACDC  "
 10190 gosub 13000: rem guru meditation
 10200 gosub 14000: rem print Nikola's greeting
 10210 gosub 1000
 12000 return
 
 13000 print "{clr}{red}"
-13001 print "{rvon}                                       "
-13002 print "{rvon} {rvof}                                     {rvon} "
+13001 rem print "{rvon}                                       "
+13002 rem print "{rvon} {rvof}                                     {rvon} "
 13003 print g1$
 13004 print g2$
-13005 print "{rvon} {rvof}                                     {rvon} "
-13006 print "{rvon}                                       "
+13005 rem print "{rvon} {rvof}                                     {rvon} "
+13006 rem print "{rvon}                                       "
 13010 get in$:if in$="" goto 13010
 13015 print"{clr}{lblu}"
 13020 return
