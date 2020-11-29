@@ -223,7 +223,17 @@
 5015 return
      
 5050 rem hints from nikola, based on event
-5060 an$="TODO: Hint from Nikola": return
+5060 if e=1 then an$="Maybe the tree by the brook is Mallorn.": return
+5080 if e=3 then an$="Could they know about the songbird?": return
+5100 if e=5 then an$="Hole in the ground? Outside Mallorn?": return
+5110 if e=6 then an$="Do we dare enter the rabbit hole?": return
+5120 if e=7 then an$="Maybe the computer controls the lock.": return
+5140 if e=9 then an$="I think they are all quite similar.": return
+5150 if e=10 then an$="Let's go already! Enter the tunnels!": return
+5160 if e=11 then an$="Song: There is a wrong and a {wht}right{pur}.": return
+5170 if e=12 then an$="Up, up and away! The stairs!": return
+5180 if e=13 then an$="We are close. Let's open the door.": return
+5200 an$="I have no idea. We should not be here.": return
      
 5400 rem nikola
 5401 print "Hiya pilgrim! What can I do for you?": return
@@ -273,7 +283,7 @@
 6320 return
      
 6400 rem event 5
-6410 if co$="exit" or co$="leave" then e=6:u=1
+6410 if co$="exit" or co$="leave" or ob$="out" then e=6:u=1
 6420 return
      
 6500 rem event 6
@@ -312,7 +322,7 @@
 7060 return
      
 7100 rem event 12 - under the tower
-7110 if co$="climb" then e=13: u=1
+7110 if co$="climb" or ob$="stairs" then e=13: u=1
 7120 return
      
 7200 rem event 13 - top of the tower
@@ -540,7 +550,7 @@
 15071 print "you like to join me? We could become"
 15072 print "something... extraordinary.'"
 15200 print "'Well, make your choice."
-15201 print "Join me, or stay here.'"
+15201 print "{wht}Join{lblu} me, or {wht}stay{lblu} here.'"
 15220 gosub 2200
 15230 if co$="shoot" or co$="stay" or co$="no" then gosub 17000: return
 15340 if co$="join" or co$="yes" then gosub 18000: return
@@ -565,7 +575,7 @@
 17022 print "stairs of the crumbling tower, then"
 17023 print "passing out. 'One of these nights' you"
 17024 print "think. Once again, nothing gained.": print
-17025 print "'Um, what about me?' Nikola asks."
+17025 print "'{pur}Um, what about me?{lblu}' Nikola asks."
 17026 print ""
 17027 print "{white}Ooh, it makes you wonder.{lblu}"
 17030 end
@@ -778,7 +788,7 @@
 52206 data "noise of the thunder is deafening. You"
 52207 data "smell the ozone and a metallic taste"
 52208 data "enters your mouth. There are"
-52209 data "maintenance stairs on the outer wall of"
+52209 data "maintenance {wht}stairs{lblu} on the outer wall of"
 52210 data "the tower, all the way to the top."
 52211 data "@"
 
@@ -789,7 +799,7 @@
 52304 data "drag your exhausted feet up the stairs,"
 52305 data "fighting the strong wind. And then,"
 52306 data "finally, you are at the roof, under the"
-52307 data "huge hemisphere. There is a door at the"
+52307 data "huge hemisphere. There is a {wht}door{lblu} at the"
 52308 data "side of the pillar supporting the"
 52309 data "aerial."
 52310 data "@"
