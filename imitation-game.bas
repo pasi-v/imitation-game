@@ -222,7 +222,7 @@
 5015 return
      
 5400 rem nikola
-5401 print "Hiya pilgrim, what can I do for you?": return
+5401 print "Hiya pilgrim! What can I do for you?": return
      
 5500 rem agnus
 5501 print "Awrite! Hou ar ye?": return
@@ -456,7 +456,8 @@
 10188 g1$="{rvon} {rvof}  Software Failure.   Rebooting...   {rvon} "
 10189 g2$="{rvon} {rvof}  Guru Meditation     #10071856.ACDC {rvon} "
 10190 gosub 13000: rem guru meditation
-10200 gosub 14000: rem talking to nikola
+10200 gosub 14000: rem print Nikola's greeting
+10210 gosub 1000
 12000 return
 
 13000 print "{clr}{red}"
@@ -470,9 +471,9 @@
 13015 print"{clr}{lblu}"
 13020 return
 
-14000 print "{clr}{white}"
+14000 print "{clr}{wht}" 
 14001 print "Commodore Amiga 64, 64 MB RAM system"
-14002 print "Wetware interface booting...": print
+14002 print "Wetware interface booting...": print: print cl$(1)
 14010 print "Hello pilgrim, I am Nikola, your"
 14011 print "virtual assistant. You may reach me"
 14012 print "anytime by thinking 'talk' or"
@@ -489,7 +490,7 @@
 14031 print "I have to say it's really neat to be"
 14032 print "inside your head. So much interesting"
 14033 print "stuff here! I'm sure we'll get along"
-14034 print "really well!"
+14034 print "really well!{lblu}"
 14030 return
       
 14999 rem outro
@@ -614,14 +615,15 @@
 40450 next j
 40460 return
 
-50000 data "You arrive to the riverside. It is"
-50001 data "filled with warehouses and booths for"
-50002 data "tourist river cruises, so it is pretty"
-50003 data "quiet at this time of the night. One"
-50004 data "bar, 'The Mallorn' is open and floods"
-50005 data "the street with its golden light. You"
-50006 data "can hear music coming from the bar."
-50007 data "@"
+50000 data "Nikola guides you to the riverside"
+50001 data "near the Laurelin-Dorenan tower. It is"
+50003 data "filled with warehouses and booths for"
+50004 data "tourist river cruises, so it is pretty"
+50005 data "quiet at this time of the night. One"
+50006 data "bar, 'The {wht}Mallorn{lblu}' is open and floods"
+50007 data "the street with its golden light. You"
+50008 data "can hear music coming from the bar."
+50020 data "@"
       
 50100 data "The Mallorn Bar is filled with people."
 50101 data "A band is playing at the stage, three"
