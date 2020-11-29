@@ -141,7 +141,7 @@
 4030 print "{lblu}":return
      
 4100 rem talking; input: ch:character index
-4110 ad=0: print cl$(ch)
+4110 ad=0: print cl$(ch): print"(say bye to leave conversation)"
 4115 on ch gosub 5400, 5500, 5600, 5700, 5800, 5900
 4120 gosub 1100: rem read to in$
 4130 if in$="bye" then goto 4200
